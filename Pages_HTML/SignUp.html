@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registertion Form</title>
     <!-- Main Template CSS File -->
-    <link rel="stylesheet" href="../pages_CSS/SignUp.css">
+    <link rel="stylesheet" href="pages_CSS/SignUp.css">
     <!-- Goodle Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,30 +20,27 @@
         <div class="formfather">
             
             <!-- Start of Labels and inputs -->
-            <form class="form">
-                <label class="label1">User Name</label>
-                <input type="text" required class="input1" name="user_name"> <br> <br>
-                <label class="label1">Password</label> 
-                <input type="password" class="input2" required name="password" minlength="8" maxlength="20"> <br> <br> 
-                <label class="label1">Email</label>
-                <input type="email" placeholder="Email" class="input3"> <br> <br> 
-                <label class="label1">City</label>
-                <input type="text" class="input5"> <br> <br> 
-                <label class="label1">Phone Number</label>
-                <input type="text" class="input6"> <br><br>
-                <label class="label1">Gender:</label> 
-            <!-- End of Labels and inputs -->
-            <!-- Start Radio button  -->
-                <input type="radio" name="gender" value="Male" class="inputl">
-                <label class="gender">Male</label>
-                <input type="radio" name="gender" value="Female" class="inputl">
-                <label class="gender">Female</label> <br><br>
-            <!-- End Radio button  -->
+<form class="form" method="post" action="/signup">
+    <label class="label1">User Name</label>
+    <input type="text" required class="input1" name="user_name"> <br> <br>
+    
+    <label class="label1">Email</label>
+    <input type="email" placeholder="Email" class="input3" name="email"> <br> <br> 
+
+    <label class="label1">Password</label> 
+    <input type="password" class="input2" required name="password" minlength="8" maxlength="20"> <br> <br> 
+    
+    <label class="label1">Age</label>
+    <input type="text" class="input5" name="age"> <br> <br> 
+    
+    <label class="label1">Phone Number</label>
+    <input type="text" class="input6" name="phone"> <br><br>
+
             <p class="para1">Note: An account activation email will be sent to the email address you provide.</p>
                 <p class="para2">By registering you consent to allow Cadi to retain personal information consisting of your email address and IP addresses used to access the site.</p>
                 <input type="submit" required class="buttons" value="Register"> <br>
                 <h3 class="header3">Already a member?</h3> <br>
-                <a href="../Cadi.github.io/Login Form.html" class="login">Login</a>
+                <a href="Login.html" class="login">Login</a>
             </form>
         </div>
     </div>

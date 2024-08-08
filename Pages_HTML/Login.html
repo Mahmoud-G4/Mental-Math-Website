@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Sign</title>
     <!-- Main Template CSS File -->
-    <link rel="stylesheet" href="../pages_CSS/Login.css">
+    <link rel="stylesheet" href="pages_CSS/Login.css">
     <!-- Goodle Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,18 +14,8 @@
     rel="stylesheet">
 </head>
 <body>
-    <div class="main">
-        <input type="checkbox" id="chk" aria-hidden="true"/>
-        <div class="signup">
-            <form action="POST">
-                <label for="chk" aria-hidden="true">Sign Up</label>
-                <input type="email" name="email" placeholder="Email" class="input">
-                <input type="password" name="password" placeholder="Password" class="input">
-                <button class="button">Sign-up</button>
-            </form>
-        </div>
         <div class="login">
-            <form>
+            <form method="post" action="/login">
                 <label for="chk" aria-hidden="true" class="label">Login</label>
                 <input type="email" name="email" placeholder="Email" class="input">
                 <input type="password" name="password" placeholder="Password" class="input">
