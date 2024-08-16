@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../pages_CSS/Test_page.css">
+    <title>Test</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <button> <a href="./Home-Page.html">Home Page</a> </button>
+            <button> <a href="./Login.html">Login</a> </button>
+            <button> <a href="./SignUp.html">Sign up</a> </button>
+        </div>
+        <div class="test-container">
+            <h1>Mental Math Test</h1>
+            <div id="test-form">
+                <div id="questions-container"></div>
+                <button type="button" id="submit-test">Submit Test</button>
+            </div>
+            <div id="score-container" style="display: none;">
+                <h2>Your Score: <span id="score"></span>/100</h2>
+                <button type="button" id="retry-test">Retry Test</button>
+            </div>
+        </div>
+        <script src="../Pages_JS/Test_Gen.js"></script>
+    </div>
+    
+</body>
+</html>

@@ -17,6 +17,9 @@ const loginHandler = (req, res) => {
     if (results.length > 0) {
 
       // User found, redirect to a success page or dashboard
+      req.session.userID = results[0].id;
+      req.session.username = results[0].name;
+      
       res.redirect('/home_page'); 
 
     } else {
