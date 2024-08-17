@@ -22,8 +22,13 @@ app.use(session({
 
 // Serve static files For HTML 
 app.use(express.static(path.join(__dirname, '../Pages_HTML')));
+
 // Serve static files from Pages_CSS
 app.use(express.static(path.join(__dirname, '../Pages_CSS')));
+
+// Serve Bootstrap CSS from node_modules
+app.use('/bootstrap', express.static(path.join(__dirname, '../node_modules/bootstrap/dist')));
+
 
 //
 // This Sapce if or adding Services Or functionalty to the WebSite
