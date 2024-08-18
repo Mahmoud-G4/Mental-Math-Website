@@ -55,7 +55,7 @@ app.get('/home_page', (req, res) => {
 
 // Default route
 app.get('/', (req, res) => {
-   res.sendFile(path.join(__dirname,'../Pages_HTML/Test-choice-page.html'));
+   res.sendFile(path.join(__dirname,'../Pages_HTML/Home-Page.html'));
 });
 
 //
