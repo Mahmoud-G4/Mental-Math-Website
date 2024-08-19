@@ -34,6 +34,12 @@ app.use('/bootstrap', express.static(path.join(__dirname, '../node_modules/boots
 // This Sapce if or adding Services Or functionalty to the WebSite
 //
 
+
+// Set EJS as the templating engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+
 // Route to handle sign-up
 app.post('/signup', signUpHandler);
 
@@ -44,19 +50,33 @@ app.post('/login', loginHandler);
 app.post('/logout', logoutHandler)
 
 // Route to serve the login page
-app.get('/login_page', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Pages_HTML/Login.html'));
-  });
+app.get('/admin_page', (req, res) => {
+  res.render('Admin-Page');
+});
+
+app.get('/test_page', (req, res) => {
+  res.render('Test_Page');
+});
+
+app.get('/test_choice_page', (req, res) => {
+  res.render('Test-choice-page');
+});
 
 // Route to serve the login page
-app.get('/home_page', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Pages_HTML/Home-Page.html'));
-  });
-
-// Default route
-app.get('/', (req, res) => {
-   res.sendFile(path.join(__dirname,'../Pages_HTML/Home-Page.html'));
+app.get('/login_page', (req, res) => {
+  res.render('Login');
 });
+
+// Route to serve the home page
+app.get('/home_page', (req, res) => {
+  res.render('Home-Page');
+});
+
+// Default route to serve the home page
+app.get('/', (req, res) => {
+  res.render('Home-Page');
+});
+
 
 //
 // End of the Space 

@@ -1,3 +1,115 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Ensure the body takes full height and centers content */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: sans-serif;
+  background-size: cover;
+  background-color: #f0f0f0; /* Optional background color */
+}
+
+/* Navigation Bar Styling */
+nav {
+  background: #272c53;
+  border-radius: 5px; /* Rounded corners for navbar */
+  position: fixed; /* Fixed at the top */
+  height: 64.5px;
+  width: 100%; /* Full width */
+  top: 0; /* Stick to the top */
+  left: 0; /* Stick to the left */
+  z-index: 1000; /* Ensure it’s above other content */
+}
+
+/* Navigation Bar List */
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Navigation Bar Items */
+nav ul li {
+  padding: 15px;
+  cursor: pointer;
+}
+
+nav ul li.items {
+  position: relative;
+  margin: 0 16px;
+  text-align: center;
+}
+
+nav ul li.items:after {
+  position: absolute;
+  content: '';
+  left: 0;
+  bottom: 5px;
+  height: 2px;
+  width: 100%;
+  background: #33ffff;
+  opacity: 0;
+  transition: all 0.2s linear;
+}
+
+nav ul li.items:hover:after {
+  opacity: 1;
+  bottom: 8px;
+}
+
+nav ul li.logo {
+  color: white;
+  font-size: 23px;
+  font-weight: 600;
+  cursor: default;
+  user-select: none;
+}
+
+nav ul li a {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  transition: 0.4s;
+}
+
+nav ul li:hover a {
+  color: cyan;
+}
+
+/* Media Queries */
+@media all and (max-width: 900px) {
+  nav {
+    padding: 5px 30px;
+  }
+  nav ul li.items {
+    width: 100%;
+    display: none;
+  }
+  nav ul li.items.show {
+    display: block;
+  }
+  nav ul li.btn {
+    display: block;
+  }
+  nav ul li.items:hover {
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px #33ffff, inset 0 0 10px #66ffff;
+  }
+  nav ul li.items:hover:after {
+    opacity: 0;
+  }
+}
+
 body{
     margin: 0;
     padding: 0;

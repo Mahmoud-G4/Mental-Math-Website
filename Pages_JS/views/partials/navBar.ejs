@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<head>
+   <meta charset="utf-8">
+   <title>Responsive Navigation Bar</title>
+   <link rel="stylesheet" href="style.css">
+   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+   <nav>
+      <ul>
+         <li class="logo">LOGO?</li>
+         <li class="items"><a href="/home_page">Home</a></li>
+         <li class="items"><a href="/admin_page">Admin</a></li>
+         <li class="items"><a href="/login_page">Login</a></li>
+         <li class="items"><a href="/test_page">Test Page</a></li>
+         <li class="items"><a href="/test_choice_page">Test Choice Page</a></li>
+      </ul>
+   </nav>
+   <script>
+      $(document).ready(function(){
+        $('.btn').click(function(){
+          $('.items').toggleClass("show");
+          $('ul li').toggleClass("hide");
+        });
+      });
+   </script>
+</body>
+</html>
