@@ -17,6 +17,13 @@
          <li class="items"><a href="/login_page">Login</a></li>
          <li class="items"><a href="/test_page">Test Page</a></li>
          <li class="items"><a href="/test_choice_page">Test Choice Page</a></li>
+         <li class="items"><div>
+            <% if (!user) { %>
+                <a href="/signup_page" class="btn btn-primary">Sign In</a>
+            <% } else { %>
+                <a href="/profile_page" class="btn btn-primary">Profile</a>
+            <% } %>
+        </div></li>
       </ul>
    </nav>
    <script>
