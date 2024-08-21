@@ -1,8 +1,16 @@
-body{
-    margin: auto;
-}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+  }
+  body{
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
 
-.page_content{
-    font-weight: bold;
-    font-size: larger;
-}
+  nav ul li.logo {
+    margin-left: -10px; 
+  }

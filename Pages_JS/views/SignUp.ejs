@@ -17,36 +17,63 @@
 </head>
 <body>
     <%- include('partials/navBar') %>
-    <!-- Start Register Form -->
-    <div class="containerform">
-        <div class="space"></div>
-        <div class="formfather">
-            
-            <!-- Start of Labels and inputs -->
-<form class="form" method="post" action="/signup">
-    <label class="label1">User Name</label>
-    <input type="text" required class="input1" name="user_name"> <br> <br>
-    
-    <label class="label1">Email</label>
-    <input type="email" placeholder="Email" class="input3" name="email"> <br> <br> 
-
-    <label class="label1">Password</label> 
-    <input type="password" class="input2" required name="password" minlength="8" maxlength="20"> <br> <br> 
-    
-    <label class="label1">Age</label>
-    <input type="text" class="input5" name="age"> <br> <br> 
-    
-    <label class="label1">Phone Number</label>
-    <input type="text" class="input6" name="phone"> <br><br>
-
-            <p class="para1">Note: An account activation email will be sent to the email address you provide.</p>
-                <p class="para2">By registering you consent to allow Cadi to retain personal information consisting of your email address and IP addresses used to access the site.</p>
-                <input type="submit" required class="buttons" value="Register"> <br>
-                <h3 class="header3">Already a member?</h3> <br>
-                <a href="Login.html" class="login">Login</a>
-            </form>
+    <div class="container">
+        <div class="title">Registration</div>
+        <div class="content">
+            <form action="/signup" method="POST">
+                <div class="user-details">
+                  <div class="input-box">
+                    <span class="details">Full Name</span>
+                    <input type="text" name="user_name" placeholder="Enter your name" required>
+                  </div>
+                  <div class="input-box">
+                    <span class="details">Age</span>
+                    <input type="text" name="age" placeholder="Enter your age" required>
+                  </div>
+                  <div class="input-box">
+                    <span class="details">Email</span>
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                  </div>
+                  <div class="input-box">
+                    <span class="details">Phone Number</span>
+                    <input type="text" name="phone" placeholder="Enter your number" required>
+                  </div>
+                  <div class="input-box">
+                    <span class="details">Password</span>
+                    <input type="password" name="password" placeholder="Enter your password" required>
+                  </div>
+                  <div class="input-box">
+                    <span class="details">Confirm Password</span>
+                    <input type="password" name="confirm_password" placeholder="Confirm your password" required>
+                  </div>
+                </div>
+                <div class="gender-details">
+                  <input type="radio" name="gender" id="dot-1" value="male">
+                  <input type="radio" name="gender" id="dot-2" value="female">
+                  <input type="radio" name="gender" id="dot-3" value="other">
+                  <span class="gender-title">Gender</span>
+                  <div class="category">
+                    <label for="dot-1">
+                      <span class="dot one"></span>
+                      <span class="gender">Male</span>
+                    </label>
+                    <label for="dot-2">
+                      <span class="dot two"></span>
+                      <span class="gender">Female</span>
+                    </label>
+                    <label for="dot-3">
+                      <span class="dot three"></span>
+                      <span class="gender">Other</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="button">
+                  <input type="submit" value="Register">
+                </div>
+              </form>
+              
         </div>
-    </div>
-    <!-- End Register Form -->
+      </div>
+    
 </body>
 </html>
