@@ -1,5 +1,6 @@
 class DirectTest {
-    constructor() {
+    constructor(testlvl) {
+      this.testlvl=testlvl;
       this.num1 = 0;
       this.num2 = 0;
       this.num3 = 0;
@@ -12,10 +13,31 @@ class DirectTest {
     }
 
     generateNumbers() {
-      this.num1 = getRandomNumber(-9, 9);;
-      this.num2 = getRandomNumber(-9, 9);;
-      this.num3 = getRandomNumber(-9, 9);;
-      this.num4 = getRandomNumber(-9, 9);;
+      if (this.testlvl==1)
+      {
+        this.num1 = this.getRandomNumber(-9,9);
+        this.num2 = this.getRandomNumber(-9,9);
+        this.num3 = this.getRandomNumber(-9,9);
+        this.num4 = this.getRandomNumber(-9,9);
+      }
+      else if (this.testlvl==2)
+      {
+        this.num1 = this.getRandomNumber(-9,9);
+        this.num2 = this.getRandomNumber(-9,9);
+        this.num3 = this.getRandomNumber(-9,9);
+        this.num4 = this.getRandomNumber(-9,9);
+      }
+      else if (this.testlvl==3)
+      {
+        this.num1 = this.getRandomNumber(-9,9);
+        this.num2 = this.getRandomNumber(-9,9);
+        this.num3 = this.getRandomNumber(-9,9);
+        this.num4 = this.getRandomNumber(-9,9);
+      }
+      else
+      {
+        console.log("error determining the Test level")
+      }
     }
   
     calculateResult() {

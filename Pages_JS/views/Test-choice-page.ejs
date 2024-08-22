@@ -7,17 +7,115 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <!-- Main Css Templates -->
     <link rel="stylesheet" href="/navBar.css">
+    <link rel="stylesheet" href="/Test-Page-choice.css">
     <title>Choose the Level</title>
 </head>
 <body>
   <div class="whole-page-container">
     <%- include('partials/navBar') %>
-        <div class="page_body">
-          <h1>The Test Choice  page will Be here</h1>
-            <button> <a href="./Test_Page.ejs">Test for Children less than 7</a> </button>
-            <button> <a href="./Test_Page.ejs">Test for Children from 7 to 10</a> </button>
-            <button> <a href="./Test_Page.ejs">Test for Children more than 10</a> </button>
+      <div class="page_body">
+        <!-- Start Main Components -->
+        <div class="components">
+
+          <div class="container">
+
+              <div class="feat">
+
+                  <a href="../php/cpu.php"><h3>Older than 10</h3></a>
+
+                  <p> Test Level Explanation </p>
+
+              </div>
+
+              <div class="feat">
+
+                  <a href="../php/gpu.php"><h3>Between 10 and 7</h3></a>
+
+                  <p>Test Level Explanation</p>
+
+              </div>
+
+              <div class="feat">
+
+                  <a href="../php/motherboard.php"><h3>Younger than 7</h3></a>
+
+                  <p>Test Level Explanation</p>
+
+              </div>
+
+          </div>
+
         </div>
-    </div>
+        <!-- End Main Components -->
+
+        <!-- Start Services -->
+        <div class="services">
+          <div class="container">
+
+          <h2 class="special-heading">Choose your Test</h2>
+
+          <p>We are all Friends, Small and Big</p>
+
+          <div class="services-content">
+              <div class="col">
+                  <!-- Start Services -->
+                  <div class="srv">
+                      <div class="text">
+                          <h3>
+                              <i class="fa-solid fa-screwdriver-wrench"></i>
+                              Direct 
+                          </h3>
+                          <p></p>
+
+                          <a href="../php/Builder.php" class="buttons">Begin Test
+                              <i class="fa-solid fa-arrow-right"></i>
+                          </a>
+                      </div>
+                  </div>
+                  <div class="srv">
+                      <div class="text">
+                          <h3>
+                              <i class="fa-sharp fa-solid fa-book"></i>
+                              Small Friends
+                          </h3>
+                          <p></p>
+                          <a href="../php/buildguides.php" class="buttons">Begin Test
+                              <i class="fa-solid fa-arrow-right"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <!-- Start Services -->
+                  <div class="srv">
+                      <div class="text">
+                          <h3>
+                              <i class="fa-solid fa-computer"></i>
+                              Big Friends</h3>
+                          <p></p>
+                          <a href="../php/Completed Builds.php" class="buttons">Begin Test
+                              <i class="fa-solid fa-arrow-right"></i>
+                          </a>
+                      </div>
+                  </div>
+                  <div class="srv">
+                      <div class="text">
+                          <h3>
+                              <i class="fa-solid fa-envelope"></i>
+                              Multiplication</h3>
+                          <p></p>
+                          <a href="../php/contact.php" class="buttons">Begin Test
+                              <i class="fa-solid fa-arrow-right"></i>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+                  <!-- End Services -->
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>
+<script src="../Test-Type-Validaiton.js"></script>
 </body>
 </html>
