@@ -1,185 +1,172 @@
-body{
-    background-size: cover;
-}
-.back{
-    text-decoration: none;
-    font-size: 28px;
-    color: #eee;
-    transition: 0.3s;
-    width: 100px;
-    background-color: #098aca;
-    border-radius: 10px;
-    border: 2px solid #098aca;
-    padding: 6px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-.back:hover{
-    color: #098aca;
-    background-color: #eee;
+body {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
-.header .logo{
-    width: 150px;
-    margin-left: 730px;
-    
+.container {
+  max-width: 700px;
+  width: 100%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  margin-left: 600px;
 }
 
-.containerform{
-    background-color:#2c4755;
-    margin-top: -50px;
+.container .title {
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
 }
 
-.space{
-    background-color:#2c4755;
-    height: 30px;
-}
-.para3{
-    font-size: 48px;
-    color: #098aca;
-    text-align: center;
-    opacity: 50%;
-    font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+.container .title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
 
-.para1,
-.para2{
-    color: #eee;
+.content form .user-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
 }
 
-.label1{
-    transition: 0.3s;
-    font-size: 20px;
-    font-weight: bold;
+form .user-details .input-box {
+  margin-bottom: 15px;
+  width: calc(100% / 2 - 20px);
 }
 
-.label1:hover{
-    color: #eee;
+form .input-box span.details {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
 }
 
-.input1{
-    margin-left: 45px;
-}
-.input2{
-    margin-left:  58px;
-}
-.input3{
-    margin-left:  89px;
-}
-.input4{
-    margin-left: 92px;
-}
-.input5{
-    margin-left: 103px;
-}
-.input6{
-    margin-left: 10px;
-}
-.inputl{
-    margin-left: 73px;
-}
-.formfather{
-    background-color: #eee;
-    width: 600px;
-    height: 800px;
-    margin: auto;
-    padding-top: 20px;
-    border: 5px solid;
-    border-color: #098aca;
-    border-radius: 20px;
-}
-.form{
-    background-color: #2c4755;
-    width: 400px;
-    height: 580px;
-    padding-left: 50px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    color: #098aca;
-    border: 5px solid;
-    border-color: #098aca;
-    border-radius: 20px;
-    box-shadow:#eee;
-    margin: auto;
-}
-.foot1{
-    text-align: center;
-    color: #10cab7;
-    font-size: 30px;
-    opacity: 50%;
-}
-.foot{
-    background-color: #eee;
-    text-align: center;
-    margin : auto ;
-    width: 70%;
-    align-items: center;
-    color: #2c4755;
-    border-radius: 20px;
-}
-.last_link{
-    text-decoration: none;
-    color: #10cab7;
-}
-.buttons{
-    border-radius: 10px;
-    margin-left: 40px;
-    font-size: 20px;
-    font-weight: bold;
-    width: 265px;
-    height: 50px;
-    background-color: #098aca;
-    color: white;
-    transition: 0.3s;
-    border: 2px solid #098aca;
-    text-decoration: none;
+.user-details .input-box input {
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
 }
 
-.buttons:hover{
-    border: 2px solid #098aca;
-    background-color: white;
-    color: #098aca;
+.user-details .input-box input:focus,
+.user-details .input-box input:valid {
+  border-color: #9b59b6;
 }
 
-.header3{
-    color: #eee;
-    border-bottom: 2px solid #eee;
-    width: 340px;
+form .gender-details .gender-title {
+  font-size: 20px;
+  font-weight: 500;
 }
 
-.login{
-    border-radius: 10px;
-    margin-left: 40px;
-    font-size: 20px;
-    font-weight: bold;
-    width: 265px;
-    height: 50px;
-    background-color: #098aca;
-    color: white;
-    transition: 0.3s;
-    border: 2px solid #098aca;
-    text-decoration: none;
-    padding: 12px;
-    padding-left: 107px;
-    padding-right: 107px;
+form .category {
+  display: flex;
+  width: 80%;
+  margin: 14px 0;
+  justify-content: space-between;
 }
 
-.login a{
-    border-radius: 10px;
-    margin-left: 40px;
-    font-size: 20px;
-    font-weight: bold;
-    width: 265px;
-    height: 50px;
-    background-color: #098aca;
-    color: white;
-    transition: 0.3s;
-    border: 2px solid #098aca;
-    text-decoration: none;
+form .category label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
-.login:hover{
-    border: 2px solid #098aca;
-    background-color: white;
-    color: #098aca;
+form .category label .dot {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background: #d9d9d9;
+  border: 5px solid transparent;
+  transition: all 0.3s ease;
+}
+
+#dot-1:checked ~ .category label .one,
+#dot-2:checked ~ .category label .two,
+#dot-3:checked ~ .category label .three {
+  background: #9b59b6;
+  border-color: #d9d9d9;
+}
+
+form input[type="radio"] {
+  display: none;
+}
+
+form .button {
+  height: 45px;
+  margin: 35px 0;
+}
+
+form .button input {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+
+/* Added hover effect to the registration button */
+form .button input:hover {
+  background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+  transform: scale(1.05);
+  left: 0;
+}
+
+@media (max-width: 584px) {
+  .container {
+    max-width: 100%;
+  }
+
+  form .user-details .input-box {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  form .category {
+    width: 100%;
+  }
+
+  .content form .user-details {
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+
+  .user-details::-webkit-scrollbar {
+    width: 5px;
+  }
+}
+
+@media (max-width: 459px) {
+  .container .content .category {
+    flex-direction: column;
+  }
 }

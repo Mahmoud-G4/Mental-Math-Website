@@ -1,10 +1,13 @@
 const express = require('express');
-const session = require('express-session')
+const session = require('express-session');
 const bodyParser = require('body-parser');
-const path = require('path');                  // Require the path module
-const signUpHandler = require('./Sign-up');   // Import the sign-up handler
-const loginHandler = require('./Login');     // Import the log-in handler
-const logoutHandler = require('./Logout');  // Import the logout handler
+const path = require('path');
+const flash = require('connect-flash');
+const signUpHandler = require('./Sign-up');
+const loginHandler = require('./loginHandler');
+const logoutHandler = require('./Logout');
+const passport = require('passport');
+require('./passport-config'); // Ensure Passport configuration is required
 
 const app = express();
 
@@ -14,42 +17,58 @@ app.use(bodyParser.json());
 
 // Configure session middleware
 app.use(session({
-  secret: 'your_secret_key',  // Replace with a strong secret key
-  resave: false,              // Do not save session if it was not modified
-  saveUninitialized: true,    // Save uninitialized session (new session that hasn't been modified)
-  cookie: { secure: false }   // Set to true if using HTTPS
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
 }));
 
-// Serve static files For HTML 
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Add connect-flash middleware
+app.use(flash());
+
+// Add middleware to make flash messages available to all views
+app.use((req, res, next) => {
+  res.locals.messages = req.flash();
+  res.locals.user = req.user || null; // This will make 'user' available in all templates
+  next();
+});
+
+// Define middleware functions
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login_page');  // Redirect to login page if not authenticated
+}
+
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/profile_page');  // Redirect to profile page if authenticated
+  }
+  next();
+}
+
+// Serve static files
 app.use(express.static(path.join(__dirname, '../Pages_HTML')));
-
-// Serve static files from Pages_CSS
 app.use(express.static(path.join(__dirname, '../Pages_CSS')));
-
-// Serve Bootstrap CSS from node_modules
 app.use('/bootstrap', express.static(path.join(__dirname, '../node_modules/bootstrap/dist')));
-
-
-//
-// This Sapce if or adding Services Or functionalty to the WebSite
-//
-
 
 // Set EJS as the templating engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-
-// Route to handle sign-up
+// Routes
 app.post('/signup', signUpHandler);
-
-// Route to handle Login
 app.post('/login', loginHandler);
+app.post('/logout', logoutHandler);
 
-// Route to handle Logout
-app.post('/logout', logoutHandler)
+app.get('/', (req, res) => {
+  res.render('Home-Page');
+});
 
-// Route to serve the login page
 app.get('/admin_page', (req, res) => {
   res.render('Admin-Page');
 });
@@ -62,25 +81,21 @@ app.get('/test_choice_page', (req, res) => {
   res.render('Test-choice-page');
 });
 
-// Route to serve the login page
+app.get('/profile_page', checkAuthenticated, (req, res) => {
+  res.render('Profile-Page');
+});
+
+app.get('/signup_page', checkNotAuthenticated, (req, res) => {
+  res.render('SignUp');
+});
+
 app.get('/login_page', (req, res) => {
   res.render('Login');
 });
 
-// Route to serve the home page
 app.get('/home_page', (req, res) => {
   res.render('Home-Page');
 });
-
-// Default route to serve the home page
-app.get('/', (req, res) => {
-  res.render('Home-Page');
-});
-
-
-//
-// End of the Space 
-//
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
