@@ -46,5 +46,6 @@ class MultiplicationTest {
     }
   }
   
-  module.exports = MultiplicationTest;
+ module.exports= MultiplicationTest;
+
   

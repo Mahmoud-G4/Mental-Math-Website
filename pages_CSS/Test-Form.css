@@ -1,0 +1,38 @@
+.test-form-container {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 400px;
+    background-color: #f9f9f9;
+}
+
+.number-display {
+    display: flex;
+    flex-direction: column;
+}
+
+.number-display label,
+.number-display input {
+    margin: 5px 0;
+}
+
+.Next-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.feedback {
+    margin-top: 20px;
+    color: red;
+    font-weight: bold;
+}

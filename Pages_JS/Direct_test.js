@@ -56,5 +56,6 @@ class DirectTest {
     }
   }
   
-  module.exports = DirectTest;
+  module.exports= DirectTest;
+
   

@@ -56,5 +56,7 @@ class BigFriendsTest {
     }
   }
   
-  module.exports = BigFriendsTest;
+ module.exports= BigFriendsTest;
+
+
   

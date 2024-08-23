@@ -54,6 +54,8 @@ function checkNotAuthenticated(req, res, next) {
 // Serve static files
 app.use(express.static(path.join(__dirname, '../Pages_HTML')));
 app.use(express.static(path.join(__dirname, '../Pages_CSS')));
+app.use(express.static(path.join(__dirname, '../Pages_JS')));
+app.use(express.static(path.join(__dirname, '../dist')));
 app.use('/bootstrap', express.static(path.join(__dirname, '../node_modules/bootstrap/dist')));
 
 // Set EJS as the templating engine

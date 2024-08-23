@@ -56,5 +56,6 @@ class SmallFriendsTest {
     }
   }
   
-  module.exports = SmallFriendsTest;
+ module.exports= SmallFriendsTest;
+
   
