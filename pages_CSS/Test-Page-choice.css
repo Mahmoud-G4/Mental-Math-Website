@@ -1,5 +1,16 @@
 /* Start Variables */
-
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat',sans-serif;
+  }
+  body{
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
 :root{
 
     --main-color: #10cab7;
@@ -31,7 +42,7 @@
 }
 body{
 
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Montserrat',sans-serif;
 
     min-height: 100vh;
 
