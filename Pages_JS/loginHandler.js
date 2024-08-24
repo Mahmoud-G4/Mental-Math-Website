@@ -14,6 +14,11 @@ router.post('/login', (req, res, next) => {
       return res.status(401).send(info.message || 'Invalid email or password');
     }
 
+    // Check if the user's email is verified
+    if (!user.email_verified) {
+      return res.status(403).send('Please verify your email before logging in.');
+    }
+
     // Log the user in
     req.logIn(user, (err) => {
       if (err) {

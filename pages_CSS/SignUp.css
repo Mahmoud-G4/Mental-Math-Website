@@ -141,6 +141,25 @@ form .button input:hover {
   left: 0;
 }
 
+.login-link-button {
+  display: inline-block;
+  padding: 8px 16px; /* Adjust for desired size */
+  background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px; /* Same border radius as Register button */
+  font-size: 14px; /* Smaller font size */
+  margin-top: 10px; /* Space above the button */
+}
+
+.login-link-button:hover {
+  background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+  text-decoration: none;
+  transform: scale(1.05);
+  left: 0;
+}
+
 @media (max-width: 584px) {
   .container {
     max-width: 100%;

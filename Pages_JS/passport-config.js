@@ -21,6 +21,11 @@ passport.use(new LocalStrategy(
       if (results.length > 0) {
         const user = results[0];
 
+        // Check if the user's email is verified
+        if (!user.email_verified) {
+          return done(null, false, { message: 'Please verify your email before logging in.' });
+        }
+
         // Compare the hashed password with the entered password
         bcrypt.compare(password, user.password, (err, isMatch) => {
           if (err) {
@@ -61,3 +66,5 @@ passport.deserializeUser((ID, done) => {
     }
   });
 });
+
+module.exports = passport;

@@ -10,3 +10,109 @@
     align-items: center;
     padding: 10px;
   }
+/* Profile Page Container */
+.page_content {
+    background: #e6e6e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Avatar Section */
+.text-center img.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* CSS rule to style labels with data from the database */
+.label-bold {
+  font-weight: bold;
+  font-size: 1.2em; /* Adjust the font size as needed */
+}
+
+
+.text-center h6 {
+    margin: 10px 0;
+}
+
+.file-upload {
+    margin-top: 10px;
+}
+
+/* Profile Information Section */
+.list-group {
+    margin-top: 20px;
+}
+
+.list-group-item {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+}
+
+.list-group-item.text-muted {
+    background-color: #eee;
+    font-weight: bold;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+    border-radius: 4px;
+    padding: 10px 20px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Success and Error Messages */
+.flash-message {
+    margin-top: 20px;
+}
+
+.flash-message.success {
+    color: #28a745;
+}
+
+.flash-message.error {
+    color: #dc3545;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .col-sm-3, .col-sm-9 {
+        width: 100%;
+        padding: 0;
+    }
+}

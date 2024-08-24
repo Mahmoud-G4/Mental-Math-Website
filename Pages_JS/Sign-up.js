@@ -1,11 +1,17 @@
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 const db = require('./DataBase_conn'); // Import the database connection
 
 const signUpHandler = async (req, res) => {
-  const { user_name, password, email, age, phone, confirm_password } = req.body;
+  const { user_name, password, email, age, phone, confirm_password, gender } = req.body;
 
   if (password !== confirm_password) {
     return res.status(400).send('Passwords do not match.');
+  }
+
+  if (!gender) {
+    return res.status(400).send('Gender is required.');
   }
 
   try {
@@ -25,17 +31,45 @@ const signUpHandler = async (req, res) => {
       // Hash the password
       const hashedPassword = await bcrypt.hash(password, 10);
 
+      // Generate a verification token
+      const token = crypto.randomBytes(20).toString('hex');
+      const expirationTime = new Date(Date.now() + 3600000); // 1 hour
+
       // Proceed with registration
-      const insertUserSql = `INSERT INTO users (name, email, password, age, phone) VALUES (?, ?, ?, ?, ?)`;
-      const values = [user_name, email, hashedPassword, age, phone];
+      const insertUserSql = `INSERT INTO users (name, email, password, age, phone, gender, verification_token, token_expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+      const values = [user_name, email, hashedPassword, age, phone, gender, token, expirationTime];
 
       db.query(insertUserSql, values, (err, result) => {
         if (err) {
           console.error('Error inserting data into MySQL:', err);
           return res.status(500).send('Server error');
         }
-        // Redirect to the login page
-        res.redirect('/login_page');
+
+        // Send verification email
+        const transporter = nodemailer.createTransport({
+          service: 'Outlook365', // Use Outlook service
+          auth: {
+            user: 'mental-math45@outlook.com',
+            pass: 'mental-math-project45' // Consider using an app password if needed
+          }
+        });
+
+        const mailOptions = {
+          to: email,
+          from: 'mental-math45@outlook.com',
+          subject: 'Verify your email address',
+          text: `Please click the following link to verify your email address: 
+          http://${req.headers.host}/verify-email?token=${token}`
+        };
+
+        transporter.sendMail(mailOptions, (err) => {
+          if (err) {
+            console.error('Error sending verification email:', err);
+            return res.status(500).send('Server error');
+          }
+          // Redirect to the login page or a page indicating that verification email has been sent
+          res.redirect('/login_page');
+        });
       });
     });
   } catch (error) {
