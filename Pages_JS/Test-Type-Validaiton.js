@@ -90,30 +90,11 @@ function updateForm() {
     const formContainer = document.getElementById('test-form-container');
 
     // Directly inserting HTML
-    formContainer.innerHTML = `
-      <div class="test-form-container">
-        <form id="testForm" class="test-form">
-          <div class="number-display">
-            <label for="num1">Number 1:</label>
-            <input type="text" id="num1" name="num1" readonly>
-
-            <label for="num2">Number 2:</label>
-            <input type="text" id="num2" name="num2" readonly>
-
-            <label for="num3">Number 3:</label>
-            <input type="text" id="num3" name="num3" readonly>
-
-            <label for="num4">Number 4:</label>
-            <input type="text" id="num4" name="num4" readonly>
-
-            <label for="result">=</label>
-            <input type="number" id="result" name="result" required>
-          </div>
-          <button type="submit" class="Next-button">Next</button>
-        </form>
-        <div id="feedback" class="feedback"></div>
-      </div>
-    `;
+    formContainer.innerHTML = 
+    `
+       <%- include('partials/Test-Form') %>
+    `
+    ;
 
     // Populate form with numbers
     if (testInstance) {
