@@ -8,14 +8,15 @@ function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), 
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 var DirectTest = /*#__PURE__*/function () {
-  function DirectTest(testlvl) {
+  function DirectTest() {
     _classCallCheck(this, DirectTest);
-    this.testlvl = testlvl;
-    this.num1 = 0;
-    this.num2 = 0;
-    this.num3 = 0;
-    this.num4 = 0;
-    this.result = 0;
+    this.numQuestions = numQuestions;
+    this.timeLimit = timeLimit;
+    this.currentQuestion = 0;
+    this.correctAnswers = 0;
+    this.incorrectAnswers = [];
+    this.timer = null;
+    this.testStartTime = null;
   }
   return _createClass(DirectTest, [{
     key: "getRandomNumber",
@@ -23,48 +24,85 @@ var DirectTest = /*#__PURE__*/function () {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
   }, {
-    key: "generateNumbers",
-    value: function generateNumbers() {
-      if (this.testlvl == 1) {
-        this.num1 = this.getRandomNumber(-9, 9);
-        this.num2 = this.getRandomNumber(-9, 9);
-        this.num3 = this.getRandomNumber(-9, 9);
-        this.num4 = this.getRandomNumber(-9, 9);
-      } else if (this.testlvl == 2) {
-        this.num1 = this.getRandomNumber(-9, 9);
-        this.num2 = this.getRandomNumber(-9, 9);
-        this.num3 = this.getRandomNumber(-9, 9);
-        this.num4 = this.getRandomNumber(-9, 9);
-      } else if (this.testlvl == 3) {
-        this.num1 = this.getRandomNumber(-9, 9);
-        this.num2 = this.getRandomNumber(-9, 9);
-        this.num3 = this.getRandomNumber(-9, 9);
-        this.num4 = this.getRandomNumber(-9, 9);
+    key: "startTest",
+    value: function startTest() {
+      var _this = this;
+      this.testStartTime = new Date();
+      this.timer = setTimeout(function () {
+        _this.endTest();
+      }, this.timeLimit * 1000);
+      this.nextQuestion();
+    }
+  }, {
+    key: "nextQuestion",
+    value: function nextQuestion() {
+      if (this.currentQuestion < this.numQuestions) {
+        this.currentQuestion++;
+        // Generate four numbers and populate the form
+        var num1 = this.getRandomNumber(1, 9);
+        var num2 = this.getRandomNumber(1, 9);
+        var num3 = this.getRandomNumber(1, 9);
+        var num4 = this.getRandomNumber(1, 9);
+        this.displayNumbers(num1, num2, num3, num4);
       } else {
-        console.log("error determining the Test level");
+        this.endTest();
       }
     }
   }, {
-    key: "calculateResult",
-    value: function calculateResult() {
-      this.result = this.num1 + this.num2 + this.num3 + this.num4;
+    key: "displayNumbers",
+    value: function displayNumbers(num1, num2, num3, num4) {
+      document.getElementById('num1').value = num1;
+      document.getElementById('num2').value = num2;
+      document.getElementById('num3').value = num3;
+      document.getElementById('num4').value = num4;
     }
   }, {
-    key: "checkAnswer",
-    value: function checkAnswer(userAnswer) {
-      return this.result === parseInt(userAnswer, 10);
+    key: "submitAnswer",
+    value: function submitAnswer(userAnswer) {
+      var num1 = parseInt(document.getElementById('num1').value);
+      var num2 = parseInt(document.getElementById('num2').value);
+      var num3 = parseInt(document.getElementById('num3').value);
+      var num4 = parseInt(document.getElementById('num4').value);
+      var correctAnswer = num1 + num2 + num3 + num4; // Adjust for The number operation
+
+      if (userAnswer == correctAnswer) {
+        this.correctAnswers++;
+      } else {
+        this.incorrectAnswers.push({
+          num1: num1,
+          num2: num2,
+          num3: num3,
+          num4: num4,
+          correctAnswer: correctAnswer,
+          userAnswer: userAnswer
+        });
+      }
+      this.nextQuestion();
     }
   }, {
-    key: "sendNumbersToForm",
-    value: function sendNumbersToForm() {
-      document.getElementById('num1').value = this.num1;
-      document.getElementById('num2').value = this.num2;
-      document.getElementById('num3').value = this.num3;
-      document.getElementById('num4').value = this.num4;
+    key: "endTest",
+    value: function endTest() {
+      clearTimeout(this.timer);
+      this.showResults();
+    }
+  }, {
+    key: "showResults",
+    value: function showResults() {
+      // Hide the test form
+      document.getElementById('test-form-container').style.display = 'none';
+
+      // Show the results
+      var resultContainer = document.getElementById('result-container');
+      resultContainer.innerHTML = "\n      <h3>Your Score: ".concat(this.correctAnswers, " out of ").concat(this.numQuestions, "</h3>\n      <div id=\"detailed-results\">\n        ").concat(this.incorrectAnswers.map(function (answer) {
+        return "\n          <p>".concat(answer.num1, " + ").concat(answer.num2, " + ").concat(answer.num3, " + ").concat(answer.num4, " = ").concat(answer.correctAnswer, " (Your Answer: ").concat(answer.userAnswer, ")</p>\n        ");
+      }).join(''), "\n      </div>\n      <button id=\"retryBtn\">Retry</button>\n    ");
+      resultContainer.style.display = 'block';
+      document.getElementById('retryBtn').addEventListener('click', function () {
+        location.reload();
+      });
     }
   }]);
 }();
-module.exports = DirectTest;
 
 },{}],2:[function(require,module,exports){
 "use strict";
@@ -136,9 +174,11 @@ var MultiplicationTest = require('./Multiplication_test');
 // Variables to store testType and testLVL
 var testLVL;
 var testType;
-var testInstance; // Move this out of functions to ensure it's accessible globally
+var testInstance; // Ensure it's accessible globally
+var numQuestions = 10; // Default number of questions
+var timeLimit = 60; // Default time limit in seconds
 
-// Setting Listeners when a button is clicked for Test Level and Test Type:
+// Setting Listeners when a button is clicked for Test Level, Test Type, Number of Questions, and Time Limit:
 document.addEventListener('DOMContentLoaded', function () {
   var lvl1Btn = document.getElementById('LVL1-TestBtn');
   var lvl2Btn = document.getElementById('LVL2-TestBtn');
@@ -196,13 +236,13 @@ function setTestLVL(testLVLchoice) {
 function setTestType(testTypeChoice) {
   switch (testTypeChoice) {
     case 'Direct':
-      return new DirectTest(testLVL);
+      return new DirectTest();
     case 'SmallFriends':
-      return new SmallFriendsTest(testLVL);
+      return new SmallFriendsTest();
     case 'BigFriends':
-      return new BigFriendsTest(testLVL);
+      return new BigFriendsTest();
     case 'Multiplication':
-      return new MultiplicationTest(testLVL);
+      return new MultiplicationTest();
     default:
       console.error('Invalid test type');
       return null;
@@ -213,12 +253,11 @@ function updateForm() {
     var formContainer = document.getElementById('test-form-container');
 
     // Directly inserting HTML
-    formContainer.innerHTML = "\n      <div class=\"test-form-container\">\n        <form id=\"testForm\" class=\"test-form\">\n          <div class=\"number-display\">\n            <label for=\"num1\">Number 1:</label>\n            <input type=\"text\" id=\"num1\" name=\"num1\" readonly>\n\n            <label for=\"num2\">Number 2:</label>\n            <input type=\"text\" id=\"num2\" name=\"num2\" readonly>\n\n            <label for=\"num3\">Number 3:</label>\n            <input type=\"text\" id=\"num3\" name=\"num3\" readonly>\n\n            <label for=\"num4\">Number 4:</label>\n            <input type=\"text\" id=\"num4\" name=\"num4\" readonly>\n\n            <label for=\"result\">=</label>\n            <input type=\"number\" id=\"result\" name=\"result\" required>\n          </div>\n          <button type=\"submit\" class=\"Next-button\">Next</button>\n        </form>\n        <div id=\"feedback\" class=\"feedback\"></div>\n      </div>\n    ";
+    formContainer.setAttribute = ('style', 'display: block');
 
-    // Populate form with numbers
+    // Start the test
     if (testInstance) {
-      testInstance.generateNumbers(); // Make sure this method populates numbers
-      testInstance.sendNumbersToForm(); // Ensure this method sets the form inputs
+      testInstance.startTest(); // This starts the test, initializes the timer, and handles questions
     }
   }
 }

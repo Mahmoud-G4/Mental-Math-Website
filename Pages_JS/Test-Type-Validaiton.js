@@ -7,9 +7,11 @@ const MultiplicationTest = require('./Multiplication_test');
 // Variables to store testType and testLVL
 let testLVL;
 let testType;
-let testInstance;  // Move this out of functions to ensure it's accessible globally
+let testInstance;  // Ensure it's accessible globally
+let numQuestions = 10; // Default number of questions
+let timeLimit = 60; // Default time limit in seconds
 
-// Setting Listeners when a button is clicked for Test Level and Test Type:
+// Setting Listeners when a button is clicked for Test Level, Test Type, Number of Questions, and Time Limit:
 document.addEventListener('DOMContentLoaded', function() {
   const lvl1Btn = document.getElementById('LVL1-TestBtn');
   const lvl2Btn = document.getElementById('LVL2-TestBtn');
@@ -18,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const smallFriendsBtn = document.getElementById('SmallFriends-TestBtn');
   const bigFriendsBtn = document.getElementById('BigFriends-TestBtn');
   const multiplicationBtn = document.getElementById('Multiplication-TestBtn');
+
 
   if (lvl1Btn) lvl1Btn.addEventListener('click', function() {
       testLVL = setTestLVL('LVL 1');
@@ -54,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-
 function setTestLVL(testLVLchoice) {
   switch (testLVLchoice) {
     case 'LVL 1':
@@ -72,13 +74,13 @@ function setTestLVL(testLVLchoice) {
 function setTestType(testTypeChoice) {
   switch (testTypeChoice) {
     case 'Direct':
-      return new DirectTest(testLVL);
+      return new DirectTest();
     case 'SmallFriends':
-      return new SmallFriendsTest(testLVL);
+      return new SmallFriendsTest();
     case 'BigFriends':
-      return new BigFriendsTest(testLVL);
+      return new BigFriendsTest();
     case 'Multiplication':
-      return new MultiplicationTest(testLVL);
+      return new MultiplicationTest();
     default:
       console.error('Invalid test type');
       return null;
@@ -90,16 +92,11 @@ function updateForm() {
     const formContainer = document.getElementById('test-form-container');
 
     // Directly inserting HTML
-    formContainer.innerHTML = 
-    `
-       <%- include('partials/Test-Form') %>
-    `
-    ;
+    formContainer.setAttribute = ('style','display: block');
 
-    // Populate form with numbers
+    // Start the test
     if (testInstance) {
-      testInstance.generateNumbers();  // Make sure this method populates numbers
-      testInstance.sendNumbersToForm();  // Ensure this method sets the form inputs
+      testInstance.startTest();  // This starts the test, initializes the timer, and handles questions
     }
   }
 }
