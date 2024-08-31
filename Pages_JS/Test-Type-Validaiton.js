@@ -8,8 +8,6 @@ const MultiplicationTest = require('./Multiplication_test');
 let testLVL;
 let testType;
 let testInstance;  // Ensure it's accessible globally
-let numQuestions = 10; // Default number of questions
-let timeLimit = 60; // Default time limit in seconds
 
 // Setting Listeners when a button is clicked for Test Level, Test Type, Number of Questions, and Time Limit:
 document.addEventListener('DOMContentLoaded', function() {
@@ -92,8 +90,31 @@ function updateForm() {
     const formContainer = document.getElementById('test-form-container');
 
     // Directly inserting HTML
-    formContainer.setAttribute = ('style','display: block');
+    formContainer.innerHTML=`
+    <div id="test-form-container">
+    <form id="testForm" class="test-form">
+      <label id="timeRemaining">0:00</label>
+      <label id="questionCounter">1/100</label>
+      <div class="number-display">
+        <input type="text" id="num1" name="num1" readonly>  
+        
+        <input type="text" id="num2" name="num2" readonly>
 
+        <input type="text" id="num3" name="num3" readonly>
+  
+        <input type="text" id="num4" name="num4" readonly>
+  
+        <input type="number" id="result" name="result" required>
+      </div>
+      <button type="submit" class="Next-button">Next</button>
+    </form>
+  </div>
+  
+  <!-- A div that will contain the results -->
+  <div id="result-container" style="display: none;"></div>
+  `;
+
+    
     // Start the test
     if (testInstance) {
       testInstance.startTest();  // This starts the test, initializes the timer, and handles questions
