@@ -132,8 +132,12 @@ app.get('/test_page', (req, res) => {
   res.render('Test_Page');
 });
 
-app.get('/test_choice_page', (req, res) => {
-  res.render('Test-choice-page');
+app.get('/Test-Choice-Page', (req, res) => {
+  res.render('Test-Choice-Page');
+});
+
+app.get('/Competition-page', (req, res) => {
+  res.render('Competition-page');
 });
 
 app.get('/verify-email', (req, res) => {

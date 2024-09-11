@@ -22,10 +22,10 @@ class DirectTest {
     switch (this.testLevel) {
       case 1:
         // Level 1: Single-digit numbers (1-9)
-        num1 = this.getRandomNumber(1, 9);
-        num2 = this.getRandomNumber(1, 9);
-        num3 = this.getRandomNumber(1, 9);
-        num4 = this.getRandomNumber(1, 9);
+        num1 = this.getRandomNumber(1, 5);
+        num2 = this.getRandomNumber(1, 4);
+        num3 = this.getRandomNumber(1, 2);
+        num4 = this.getRandomNumber(1, 3);
         break;
 
       case 2:

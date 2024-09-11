@@ -19,8 +19,8 @@ class MultiplicationTest {
 
     switch (this.testLevel) {
       case 1:
-        num1 = this.getRandomNumber(1, 9);
-        num2 = this.getRandomNumber(1, 9);
+        num1 = this.getRandomNumber(1, 12);
+        num2 = this.getRandomNumber(1, 12);
         break;
       case 2:
         num1 = this.getRandomNumber(1, 12);

@@ -43,10 +43,10 @@ var DirectTest = /*#__PURE__*/function () {
       switch (this.testLevel) {
         case 1:
           // Level 1: Single-digit numbers (1-9)
-          num1 = this.getRandomNumber(1, 9);
-          num2 = this.getRandomNumber(1, 9);
-          num3 = this.getRandomNumber(1, 9);
-          num4 = this.getRandomNumber(1, 9);
+          num1 = this.getRandomNumber(1, 5);
+          num2 = this.getRandomNumber(1, 4);
+          num3 = this.getRandomNumber(1, 2);
+          num4 = this.getRandomNumber(1, 3);
           break;
         case 2:
           // Level 2: Two-digit numbers (10-99)
@@ -208,8 +208,8 @@ var MultiplicationTest = /*#__PURE__*/function () {
       var num1, num2;
       switch (this.testLevel) {
         case 1:
-          num1 = this.getRandomNumber(1, 9);
-          num2 = this.getRandomNumber(1, 9);
+          num1 = this.getRandomNumber(1, 12);
+          num2 = this.getRandomNumber(1, 12);
           break;
         case 2:
           num1 = this.getRandomNumber(1, 12);
