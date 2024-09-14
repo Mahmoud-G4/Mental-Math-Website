@@ -5,6 +5,27 @@
   box-sizing: border-box;
   font-family: 'Montserrat',sans-serif;
 }
+
+/* Basic styling for dropdown */
+.dropdown-menu {
+ display: none;
+ position: absolute;
+ background-color: white;
+ list-style-type: none;
+ margin: 0;
+ padding: 10px;
+ box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+}
+.dropdown-menu a {
+ text-decoration: none;
+ color: black;
+ display: block;
+ padding: 5px;
+}
+.dropdown-menu a:hover {
+ background-color: #f1f1f1;
+}
+
 nav{
   background: #272c53;
   padding: 0px 40px;
