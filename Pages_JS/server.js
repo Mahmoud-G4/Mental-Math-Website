@@ -120,6 +120,8 @@ app.post('/profile_page', checkAuthenticated, async (req, res) => {
 
 app.use(express.static('public'));
 
+// Processing the Routes for the Different Files
+
 app.get('/', (req, res) => {
   res.render('Home-Page');
 });
@@ -139,6 +141,37 @@ app.get('/Test-Choice-Page', (req, res) => {
 app.get('/Competition-page', (req, res) => {
   res.render('Competition-page');
 });
+app.get('/signup_page', checkNotAuthenticated, (req, res) => {
+  res.render('SignUp');
+});
+
+app.get('/login_page', (req, res) => {
+  res.render('Login');
+});
+
+app.get('/forgot_password', (req, res) => {
+  res.render('forgotPass');
+});
+
+app.get('/home_page', (req, res) => {
+  res.render('Home-Page');
+});
+
+app.get('/Generated-Tests',(req,res)=> {
+  res.render('Generated-Tests');
+})
+
+app.get('/Pre-Made-Tests',(req,res)=> {
+  res.render('Pre-Made-Tests');
+})
+
+app.get(['/Pre-Made-Test(lvl)',(req,res)=>{
+  res.render('/Pre-Made-Tests(lvl)')
+}])
+
+//
+// End of the Routes
+//
 
 app.get('/verify-email', (req, res) => {
   const token = req.query.token;
@@ -191,21 +224,7 @@ app.get('/profile_page', checkAuthenticated, (req, res) => {
   });
 });
 
-app.get('/signup_page', checkNotAuthenticated, (req, res) => {
-  res.render('SignUp');
-});
 
-app.get('/login_page', (req, res) => {
-  res.render('Login');
-});
-
-app.get('/forgot_password', (req, res) => {
-  res.render('forgotPass');
-});
-
-app.get('/home_page', (req, res) => {
-  res.render('Home-Page');
-});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
