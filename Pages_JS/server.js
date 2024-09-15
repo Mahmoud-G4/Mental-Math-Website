@@ -39,6 +39,36 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.get('/promote_to_admin/:id', (req, res) => {
+  const userId = req.params.id; // Get user ID from the URL
+  const query = 'UPDATE users SET role = ? WHERE ID = ?'; // SQL query to change the role
+  const newRole = 'admin'; // New role
+
+  connection.query(query, [newRole, userId], (err, result) => {
+      if (err) {
+          console.error('Error promoting user:', err);
+          return res.status(500).send('Error promoting user');
+      }
+      res.redirect('/super_admin_page'); // Redirect back to the super admin page
+  });
+});
+
+app.get('/demote_to_user/:id', (req, res) => {
+  const userId = req.params.id; // Get user ID from the URL
+  const query = 'UPDATE users SET role = ? WHERE ID = ?'; // SQL query to change the role
+  const newRole = 'user'; // Demote to 'user'
+
+  connection.query(query, [newRole, userId], (err, result) => {
+      if (err) {
+          console.error('Error demoting user:', err);
+          return res.status(500).send('Error demoting user');
+      }
+      res.redirect('/super_admin_page'); // Redirect back to the super admin page
+  });
+});
+
+
+
 // Add middleware to make flash messages available to all views
 app.use((req, res, next) => {
   res.locals.messages = req.flash();
@@ -52,6 +82,23 @@ function checkAuthenticated(req, res, next) {
     return next();
   }
   res.redirect('/login_page');  // Redirect to login page if not authenticated
+}
+// Middleware to check if user is super admin
+function isSuperAdmin(req, res, next) {
+  if (req.isAuthenticated() && req.user.role === 'super_admin') {
+      return next();
+  } else {
+      res.redirect('/login_page'); // Or show an error message
+  }
+}
+
+// Middleware to check if user is admin
+function isAdmin(req, res, next) {
+  if (req.isAuthenticated() && (req.user.role === 'admin' || req.user.role === 'super_admin')) {
+      return next();
+  } else {
+      res.redirect('/login_page');
+  }
 }
 
 function checkNotAuthenticated(req, res, next) {
@@ -78,6 +125,33 @@ app.set('views', path.join(__dirname, 'views'));
 app.post('/signup', signUpHandler);
 app.post('/login', loginHandler);
 app.post('/logout', logoutHandler);
+
+// Route to promote a user to admin
+app.get('/promote_to_admin/:id', isSuperAdmin, (req, res) => {
+  const userId = req.params.id;
+  connection.query('UPDATE users SET role = ? WHERE id = ?', ['admin', userId], (err, results) => {
+      if (err) throw err;
+      res.redirect('/super_admin_page');
+  });
+});
+
+// Route to demote an admin to a regular user
+app.get('/demote_to_user/:id', isSuperAdmin, (req, res) => {
+  const userId = req.params.id;
+  connection.query('UPDATE users SET role = ? WHERE id = ?', ['user', userId], (err, results) => {
+      if (err) throw err;
+      res.redirect('/super_admin_page');
+  });
+});
+
+
+app.get('/super_admin_page', isSuperAdmin, (req, res) => {
+  connection.query('SELECT * FROM users', (err, users) => {
+      if (err) throw err;
+      res.render('super_admin_page', { users });
+  });
+});
+
 
 app.post('/profile_page', checkAuthenticated, async (req, res) => {
   const userId = req.user.ID; // Get the logged-in user's ID
