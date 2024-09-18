@@ -194,7 +194,9 @@ app.post('/profile_page', checkAuthenticated, async (req, res) => {
 
 app.use(express.static('public'));
 
+//
 // Processing the Routes for the Different Files
+//
 
 app.get('/', (req, res) => {
   res.render('Home-Page');
@@ -235,13 +237,13 @@ app.get('/Generated-Tests',(req,res)=> {
   res.render('Generated-Tests');
 })
 
-app.get('/Pre-Made-Tests',(req,res)=> {
-  res.render('Pre-Made-Tests');
+app.get('/Pre-Made-Tests-lvl',(req,res)=>{
+  res.render('Pre-Made-Tests-lvl')
 })
 
-app.get(['/Pre-Made-Test(lvl)',(req,res)=>{
-  res.render('/Pre-Made-Tests(lvl)')
-}])
+app.get('/Pre-Made-Tests-type',(req,res)=>{
+  res.render('Pre-Made-Tests-type')
+})
 
 //
 // End of the Routes
