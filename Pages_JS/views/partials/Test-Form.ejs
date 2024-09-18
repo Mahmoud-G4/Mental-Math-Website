@@ -1,8 +1,10 @@
 <div id="BackLight">
   <div id="test-form-container">
     <form id="testForm" class="test-form">
-      <label id="timeRemaining">0:00</label>
+      <div class="Form-Header">
+        <label id="timeRemaining">0:00</label>
       <label id="questionCounter">1/100</label>
+      </div>
       <div class="number-display">
         <input type="text" id="num1" name="num1" value="0" readonly>  
         
@@ -15,8 +17,8 @@
         <input type="number" id="result" name="result" required>
       </div>
       <div class="Form-Button-Container">
-         <button type="submit" class="Form-Button" id="Next-Button"><span class="btnInner">Next</span></button>
          <button type="submit" class="Form-Button" id="Quit-Button"><span class="btnInner">Quit</span></button>
+         <button type="submit" class="Form-Button" id="Next-Button"><span class="btnInner">Next</span></button>
       </div>
     </form>
   </div>
