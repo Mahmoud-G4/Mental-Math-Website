@@ -215,23 +215,23 @@ body
 }
 
 /* Addind Spicfication for each button */
-#Generated-btn{
+#Pre-Made-btn{
   background-color: #9e8ef1 ;
 }
 
-#Generated_btn:hover{
+#Pre-Made-btn:hover{
   background: #7762e7;
   transition: 1s;
   border: 1px solid rgba(227, 101, 238, 0.4);
   box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
 }
 
-#Pre-Made-btn{
+#Generated_btn{
   color: black;
   background-color: #fddd84;
 }
 
-#Pre-Made-btn:hover{
+#Generated_btn:hover{
   background: #e3b125;
   transition: 1s;
   border: 1px solid rgba(255, 0, 88, 0.4);

@@ -3,7 +3,6 @@ body{
     margin:0;
     padding:0;
     height: 100vh;
-    overflow: hidden;
     background: #100028;
     justify-content: center;
     align-items: center;
@@ -11,7 +10,7 @@ body{
   }
   
   .container{
-    height: 100vh;
+    height: auto;
     width: auto;
     position: relative;
     display: flex;
@@ -33,7 +32,8 @@ body{
   
   .container .card .face.face1{
     position: relative;
-    background: #333;
+    border-radius: 15px;
+    background: #452e8b;
     display: flex;
     justify-content: center;
     align-content:center;
@@ -44,29 +44,20 @@ body{
   
   .container .card:hover .face.face1{
     transform: translateY(0);
-    box-shadow:
-      inset 0 0 60px whitesmoke,
-      inset 20px 0 80px rgb(245, 248, 87),
-      inset -20px 0 80px rgb(153, 223, 62),
-      inset 20px 0 300px rgb(194, 226, 52),
-      inset -20px 0 300px #0ff,
-      0 0 50px #fff,
-      -10px 0 80px #f0f,
-      10px 0 80px #0ff;
+    box-shadow: 
+    inset 0 0 60px #3273b9, 
+    inset 20px 0 80px rgb(201 97 255), 
+    inset -20px 0 80px rgb(34 49 189), 
+    inset 20px 0 300px rgb(52 181 226), 
+    inset -20px 0 300px #0ff, 0 0 50px #107acd, -10px 0 80px #f0f, 10px 0 80px #0ff;
      
   }
   
   
   .container .card .face.face1 .content{
-    opacity: .2;
+    opacity: .6;
     transition:  0.5s;
-    text-align: center;
-    
-     
-    
-    
-   
-  
+    text-align: center;  
   }
   
   .container .card:hover .face.face1 .content{
@@ -82,11 +73,9 @@ body{
   }
   
   .container .card .face.face1 .content h3{
-    font-size: 1em;
-    color: white;
+    font-size: 2em;
+    color: rgb(255, 255, 255);
     text-align: center;
-    
-  
   }
   
   .container .card .face.face1 .content a{
@@ -95,6 +84,7 @@ body{
   
   .container .card .face.face2{
      position: relative;
+     border-radius: 20px;
      background: whitesmoke;
      display: flex;
      align-items: center;
@@ -112,7 +102,8 @@ body{
   }
   
   .container .card .face.face2 .content p, a{
-    font-size: 10pt;
+    font-size: 1rem;
+    font-weight: bolder;
     margin: 0 ;
     padding: 0;
     color:#333;
@@ -120,17 +111,19 @@ body{
   
   .container .card .face.face2 .content a{
     text-decoration:none;
+    background-color: aliceblue;
     color: black;
     box-sizing: border-box;
     outline : 1px solid #333;
-    border-radius: 5px;
+    border-radius: 20px;
     padding: 10px;
     margin: 15px 0 0;
     display: inline-block;
+    font-size: 2rem;
   }
   
   .container .card .face.face2 .content a:hover{
-    background: #4be237 ;
+    background: #536df1e0 ;
     transition: 0.5s;
     color: whitesmoke; 
     box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
