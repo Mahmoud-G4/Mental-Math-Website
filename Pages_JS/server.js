@@ -225,8 +225,12 @@ app.get('/login_page', (req, res) => {
   res.render('Login');
 });
 
+app.get('/contact_page', (req, res) => {
+  res.render('contact');
+});
+
 app.get('/forgot_password', (req, res) => {
-  res.render('forgotPass');
+  res.render('reset');
 });
 
 app.get('/home_page', (req, res) => {
