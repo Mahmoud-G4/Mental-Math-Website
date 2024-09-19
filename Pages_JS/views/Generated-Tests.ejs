@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Including Bootstrap for template -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <!-- Main Css Templates -->
+    <link rel="stylesheet" href="/navBar.css">
+    <link rel="stylesheet" href="/Generated-Tests.css">
+    <title>Choose the Level</title>
+</head>
+<body>
+  <div class="whole-page-container">
+    <%- include('partials/navBar') %>
+      <div class="page_body">
+        <!-- Start Main Components -->
+        <div class="components">
+          <h2 class="special-heading">Welcome to The practice Area</h2>
+          <div class="container">
+              <div class="feat">
+                  <button href="" id="LVL3-TestBtn" class="buttons"><h3>Older than 10</h3></button>
+                  <p> Test Level Explanation </p>
+              </div>
+              <div class="feat">
+                  <button href="" id="LVL2-TestBtn" class="buttons"><h3>Between 10 and 7</h3></button>
+                  <p>Test Level Explanation</p>
+              </div>
+              <div class="feat">
+                  <button id="LVL1-TestBtn" class="buttons" href=""><h3>Younger than 7</h3></button>
+                  <p>Test Level Explanation</p>
+              </div>
+          </div>
+        </div>
+        <!-- End Main Components -->
+        <!-- Start Services -->
+        <div class="services">
+          <div class="container">
+          <h2 class="special-heading">Choose your Test</h2>
+          <p>We are all Friends, Small and Big</p>
+
+          <div class="services-content">
+              <div class="col">
+                  <!-- Start Services -->
+                  <div class="srv">
+                      <div class="text">
+                          <h3>Direct </h3>
+                          <p></p>
+                          <button href="" id="Direct-TestBtn" class="buttons">Begin Test</button>
+                      </div>
+                  </div>
+                  <div class="srv">
+                    <div class="text">
+                        <h3>Small Freinds</h3>
+                        <p></p>
+                        <button href="" id="SmallFriends-TestBtn" class="buttons">Begin Test</button>
+                    </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <!-- Start Services -->
+                  <div class="srv">
+                    <div class="text">
+                        <h3>Big Freinds</h3>
+                        <p></p>
+                        <button href="" id="BigFriends-TestBtn" class="buttons">Begin Test</button>
+                    </div>
+                  </div>
+                  <div class="srv">
+                    <div class="text">
+                        <h3>Multiplication</h3>
+                        <p></p>
+                        <button href="" id="Multiplication-TestBtn" class="buttons">Begin Test</button>
+                    </div>
+                  </div>
+              </div>
+                  <!-- End Services -->
+              </div>
+          </div>
+        </div>
+      </div>
+  </div>
+    <script src="/bundle.js"></script>
+</body>
+</html>

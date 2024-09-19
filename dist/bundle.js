@@ -310,10 +310,13 @@ var MultiplicationTest = require('./Multiplication_test');
 // Variables to store testType and testLVL
 var testLVL;
 var testType;
-var testInstance; // Ensure it's accessible globally
+var testInstance;
+var testGenere;
 
 // Setting Listeners when a button is clicked for Test Level, Test Type, Number of Questions, and Time Limit:
 document.addEventListener('DOMContentLoaded', function () {
+  var PreMade_btn = document.getElementById('Generated_btn');
+  var Generated_btn = document.getElementById('Pre-Made-btn');
   var lvl1Btn = document.getElementById('LVL1-TestBtn');
   var lvl2Btn = document.getElementById('LVL2-TestBtn');
   var lvl3Btn = document.getElementById('LVL3-TestBtn');
@@ -321,39 +324,67 @@ document.addEventListener('DOMContentLoaded', function () {
   var smallFriendsBtn = document.getElementById('SmallFriends-TestBtn');
   var bigFriendsBtn = document.getElementById('BigFriends-TestBtn');
   var multiplicationBtn = document.getElementById('Multiplication-TestBtn');
+
+  // Event Listener for The test Gener
+  if (PreMade_btn) PreMade_btn.addEventListener('click', function () {
+    testGenere = setTestGenere('Pre-Made');
+    console.log('Test Genere Has been set To:', testLVL);
+  });
+  if (Generated_btn) Generated_btn.addEventListener('click', function () {
+    testGenere = setTestGenere('Generated');
+    console.log('Test Genere Has been set To:', testLVL);
+  });
+
+  // Event Listeners for the test LeveL:
   if (lvl1Btn) lvl1Btn.addEventListener('click', function () {
     testLVL = setTestLVL('LVL 1');
-    updateForm();
+    console.log('Test LeveL Has been set To:', testLVL);
   });
   if (lvl2Btn) lvl2Btn.addEventListener('click', function () {
     testLVL = setTestLVL('LVL 2');
-    updateForm();
+    console.log('Test LeveL Has been set To:', testLVL);
   });
   if (lvl3Btn) lvl3Btn.addEventListener('click', function () {
     testLVL = setTestLVL('LVL 3');
-    updateForm();
+    console.log('Test LeveL Has been set To:', testLVL);
   });
+
+  // Event listeners for Test Type :
   if (directBtn) directBtn.addEventListener('click', function () {
     testType = 'Direct';
     testInstance = setTestType(testType);
-    updateForm();
+    console.log('Test Type Has been set To:', testType);
   });
   if (smallFriendsBtn) smallFriendsBtn.addEventListener('click', function () {
     testType = 'SmallFriends';
     testInstance = setTestType(testType);
-    updateForm();
+    console.log('Test Type Has been set To:', testType);
   });
   if (bigFriendsBtn) bigFriendsBtn.addEventListener('click', function () {
     testType = 'BigFriends';
     testInstance = setTestType(testType);
-    updateForm();
+    console.log('Test Type Has been set To:', testType);
   });
   if (multiplicationBtn) multiplicationBtn.addEventListener('click', function () {
     testType = 'Multiplication';
     testInstance = setTestType(testType);
-    updateForm();
+    console.log('Test Type Has been set To:', testType);
   });
 });
+
+// Functions For Setting the Value od the Vairous Requirements:
+
+function setTestGenere(testGenere) {
+  switch (testGenere) {
+    case 'Pre-Made':
+      return 'Pre-Made';
+    case 'Generated':
+      return 'Generated';
+    default:
+      console.error('Invalid test Genere');
+      return 0;
+  }
+}
 function setTestLVL(testLVLchoice) {
   switch (testLVLchoice) {
     case 'LVL 1':
@@ -382,12 +413,9 @@ function setTestType(testTypeChoice) {
       return null;
   }
 }
-function updateForm() {
+function Redirction() {
   if (testInstance && testLVL) {
     var formContainer = document.getElementById('test-form-container');
-
-    // Directly inserting HTML
-    formContainer.innerHTML = "\n    <div id=\"test-form-container\">\n    <form id=\"testForm\" class=\"test-form\">\n      <label id=\"timeRemaining\">0:00</label>\n      <label id=\"questionCounter\">1/100</label>\n      <div class=\"number-display\">\n        <input type=\"text\" id=\"num1\" name=\"num1\" readonly>  \n        \n        <input type=\"text\" id=\"num2\" name=\"num2\" readonly>\n\n        <input type=\"text\" id=\"num3\" name=\"num3\" readonly>\n  \n        <input type=\"text\" id=\"num4\" name=\"num4\" readonly>\n  \n        <input type=\"number\" id=\"result\" name=\"result\" required>\n      </div>\n      <button type=\"submit\" class=\"Next-button\">Next</button>\n    </form>\n  </div>\n  \n  <!-- A div that will contain the results -->\n  <div id=\"result-container\" style=\"display: none;\"></div>\n  ";
 
     // Start the test
     if (testInstance) {
