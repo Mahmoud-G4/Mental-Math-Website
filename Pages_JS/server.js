@@ -206,8 +206,8 @@ app.get('/admin_page', (req, res) => {
   res.render('Admin-Page');
 });
 
-app.get('/test_page', (req, res) => {
-  res.render('Test_Page');
+app.get('/Test-Page', (req, res) => {
+  res.render('Test-Page');
 });
 
 app.get('/Test-Choice-Page', (req, res) => {

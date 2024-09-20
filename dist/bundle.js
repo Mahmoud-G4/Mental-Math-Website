@@ -311,12 +311,12 @@ var MultiplicationTest = require('./Multiplication_test');
 var testLVL;
 var testType;
 var testInstance;
-var testGenere;
+var testGenre;
 
-// Setting Listeners when a button is clicked for Test Level, Test Type, Number of Questions, and Time Limit:
+// Setting Listeners when a button is clicked for Test Level, Test Type, and Test Genre:
 document.addEventListener('DOMContentLoaded', function () {
-  var PreMade_btn = document.getElementById('Generated_btn');
-  var Generated_btn = document.getElementById('Pre-Made-btn');
+  var preMadeBtn = document.getElementById('Pre-Made-btn');
+  var generatedBtn = document.getElementById('Generated-btn');
   var lvl1Btn = document.getElementById('LVL1-TestBtn');
   var lvl2Btn = document.getElementById('LVL2-TestBtn');
   var lvl3Btn = document.getElementById('LVL3-TestBtn');
@@ -324,65 +324,105 @@ document.addEventListener('DOMContentLoaded', function () {
   var smallFriendsBtn = document.getElementById('SmallFriends-TestBtn');
   var bigFriendsBtn = document.getElementById('BigFriends-TestBtn');
   var multiplicationBtn = document.getElementById('Multiplication-TestBtn');
+  var startTestBtn = document.getElementById('startTestBtn');
 
-  // Event Listener for The test Gener
-  if (PreMade_btn) PreMade_btn.addEventListener('click', function () {
-    testGenere = setTestGenere('Pre-Made');
-    console.log('Test Genere Has been set To:', testLVL);
+  // Event Listener for Test Genre
+  if (preMadeBtn) preMadeBtn.addEventListener('click', function () {
+    testGenre = setTestGenre('Pre-Made');
+    localStorage.setItem('testGenre', testGenre);
+    console.log('Test Genre has been set to:', testGenre);
+    checkSelections();
   });
-  if (Generated_btn) Generated_btn.addEventListener('click', function () {
-    testGenere = setTestGenere('Generated');
-    console.log('Test Genere Has been set To:', testLVL);
+  if (generatedBtn) generatedBtn.addEventListener('click', function () {
+    testGenre = setTestGenre('Generated');
+    localStorage.setItem('testGenre', testGenre);
+    console.log('Test Genre has been set to:', testGenre);
+    checkSelections();
   });
 
-  // Event Listeners for the test LeveL:
+  // Event Listeners for the Test Level
   if (lvl1Btn) lvl1Btn.addEventListener('click', function () {
     testLVL = setTestLVL('LVL 1');
-    console.log('Test LeveL Has been set To:', testLVL);
+    localStorage.setItem('testLVL', testLVL);
+    console.log('Test Level has been set to:', testLVL);
+    checkSelections();
   });
   if (lvl2Btn) lvl2Btn.addEventListener('click', function () {
     testLVL = setTestLVL('LVL 2');
-    console.log('Test LeveL Has been set To:', testLVL);
+    localStorage.setItem('testLVL', testLVL);
+    console.log('Test Level has been set to:', testLVL);
+    checkSelections();
   });
   if (lvl3Btn) lvl3Btn.addEventListener('click', function () {
     testLVL = setTestLVL('LVL 3');
-    console.log('Test LeveL Has been set To:', testLVL);
+    localStorage.setItem('testLVL', testLVL);
+    console.log('Test Level has been set to:', testLVL);
+    checkSelections();
   });
 
-  // Event listeners for Test Type :
+  // Event listeners for Test Type
   if (directBtn) directBtn.addEventListener('click', function () {
     testType = 'Direct';
     testInstance = setTestType(testType);
-    console.log('Test Type Has been set To:', testType);
+    localStorage.setItem('testType', testType);
+    console.log('Test Type has been set to:', testType);
+    checkSelections();
   });
   if (smallFriendsBtn) smallFriendsBtn.addEventListener('click', function () {
     testType = 'SmallFriends';
     testInstance = setTestType(testType);
-    console.log('Test Type Has been set To:', testType);
+    localStorage.setItem('testType', testType);
+    console.log('Test Type has been set to:', testType);
+    checkSelections();
   });
   if (bigFriendsBtn) bigFriendsBtn.addEventListener('click', function () {
     testType = 'BigFriends';
     testInstance = setTestType(testType);
-    console.log('Test Type Has been set To:', testType);
+    localStorage.setItem('testType', testType);
+    console.log('Test Type has been set to:', testType);
+    checkSelections();
   });
   if (multiplicationBtn) multiplicationBtn.addEventListener('click', function () {
     testType = 'Multiplication';
     testInstance = setTestType(testType);
-    console.log('Test Type Has been set To:', testType);
+    localStorage.setItem('testType', testType);
+    console.log('Test Type has been set to:', testType);
+    checkSelections();
   });
+
+  // Retrieve test genre, level, and type from localStorage
+  testGenre = localStorage.getItem('testGenre');
+  testLVL = localStorage.getItem('testLVL');
+  testType = localStorage.getItem('testType');
+  if (testGenre && testLVL && testType) {
+    console.log('Retrieved test genre:', testGenre);
+    console.log('Retrieved test level:', testLVL);
+    console.log('Retrieved test type:', testType);
+    checkSelections();
+  } else {
+    console.error('Please select a test genre, level, and type.');
+  }
+
+  // Add event listener to the "Start Test" button
+  if (startTestBtn) {
+    startTestBtn.addEventListener('click', Redirection);
+  }
 });
 
-// Functions For Setting the Value od the Vairous Requirements:
-
-function setTestGenere(testGenere) {
-  switch (testGenere) {
+// Function for setting the test genre and resetting values
+function setTestGenre(selectedGenre) {
+  // Reset test variables when switching genres
+  testLVL = null;
+  testType = null;
+  testInstance = null;
+  switch (selectedGenre) {
     case 'Pre-Made':
       return 'Pre-Made';
     case 'Generated':
       return 'Generated';
     default:
-      console.error('Invalid test Genere');
-      return 0;
+      console.error('Invalid test genre');
+      return null;
   }
 }
 function setTestLVL(testLVLchoice) {
@@ -394,8 +434,8 @@ function setTestLVL(testLVLchoice) {
     case 'LVL 3':
       return 3;
     default:
-      console.error('Invalid test Level');
-      return;
+      console.error('Invalid test level');
+      return null;
   }
 }
 function setTestType(testTypeChoice) {
@@ -413,19 +453,26 @@ function setTestType(testTypeChoice) {
       return null;
   }
 }
-function Redirction() {
-  if (testInstance && testLVL) {
-    var formContainer = document.getElementById('test-form-container');
 
-    // Start the test
-    if (testInstance) {
-      testInstance.startTest(); // This starts the test, initializes the timer, and handles questions
-    }
+// Redirection function to ensure the test only starts after all selections
+function Redirection() {
+  if (testType && testLVL && testGenre) {
+    // Redirect to the appropriate test page based on the selections
+    window.location.replace('/Test-Page');
+  } else {
+    console.error('Please select a test genre, level, and type.');
   }
 }
 
-// Export the Test Object:
-module.exports = testInstance;
+// Show "Start Test" button if all selections are made
+function checkSelections() {
+  var startTestBtn = document.getElementById('startTestBtn');
+  if (testLVL && testType && testGenre) {
+    startTestBtn.style.display = 'block'; // Show the "Start Test" button
+  } else {
+    startTestBtn.style.display = 'none'; // Hide it if not all selections are made
+  }
+}
 
 },{"./Direct_test":1,"./Multiplication_test":2,"./bigFriends_test":4,"./smallFriends_test":6}],4:[function(require,module,exports){
 "use strict";
