@@ -13,7 +13,7 @@ let testGenre;
 // Setting Listeners when a button is clicked for Test Level, Test Type, and Test Genre:
 document.addEventListener('DOMContentLoaded', function() {
   const preMadeBtn = document.getElementById('Pre-Made-btn');
-  const generatedBtn = document.getElementById('Generated-btn');
+  const generatedBtn = document.getElementById('Generated_btn');
   const lvl1Btn = document.getElementById('LVL1-TestBtn');
   const lvl2Btn = document.getElementById('LVL2-TestBtn');
   const lvl3Btn = document.getElementById('LVL3-TestBtn');
@@ -24,6 +24,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const startTestBtn = document.getElementById('startTestBtn');
   
   // Event Listener for Test Genre
+  if (generatedBtn) generatedBtn.addEventListener('click', function() {
+    testGenre = setTestGenre('Generated');
+    localStorage.setItem('testGenre', testGenre);
+    console.log('Test Genre has been set to:', testGenre);
+    checkSelections();
+  });
+
   if (preMadeBtn) preMadeBtn.addEventListener('click', function() {
     testGenre = setTestGenre('Pre-Made');
     localStorage.setItem('testGenre', testGenre);
@@ -31,12 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     checkSelections();
   });
   
-  if (generatedBtn) generatedBtn.addEventListener('click', function() {
-    testGenre = setTestGenre('Generated');
-    localStorage.setItem('testGenre', testGenre);
-    console.log('Test Genre has been set to:', testGenre);
-    checkSelections();
-  });
+  
   
   // Event Listeners for the Test Level
   if (lvl1Btn) lvl1Btn.addEventListener('click', function() {
@@ -148,13 +150,13 @@ function setTestLVL(testLVLchoice) {
 function setTestType(testTypeChoice) {
   switch (testTypeChoice) {
     case 'Direct':
-      return new DirectTest();
+      return 'Direct';
     case 'SmallFriends':
-      return new SmallFriendsTest();
+      return 'SmallFriends';
     case 'BigFriends':
-      return new BigFriendsTest();
+      return 'BigFriends';
     case 'Multiplication':
-      return new MultiplicationTest();
+      return 'Multiplication';
     default:
       console.error('Invalid test type');
       return null;

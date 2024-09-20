@@ -12,6 +12,7 @@ body {
   background-color: #1d212b;
   background-image:url(../images/Test-Form-BG.jpg);
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
 
 }

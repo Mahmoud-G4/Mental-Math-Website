@@ -13,62 +13,10 @@
             <%- include('partials/Test-Form') %>
           </div>
       </div>
-      <script>
-document.addEventListener('DOMContentLoaded', function() {
- document.getElementById('result').focus();
-  
-  // Retrieve values from localStorage
-  const testType = localStorage.getItem('testType');
-  const testLVL = localStorage.getItem('testLVL');
-  const testGenre = localStorage.getItem('testGenre');
-
-  // Clear stored values (optional: if you want to reset the data after retrieval)
-  localStorage.removeItem('testType');
-  localStorage.removeItem('testLVL');
-  localStorage.removeItem('testGenre');
-
-  if (testType && testLVL && testGenre) {
-    let testInstance;
-    switch (testType) {
-      case 'Direct':
-        testInstance = new DirectTest();
-        break;
-      case 'SmallFriends':
-        testInstance = new SmallFriendsTest();
-        break;
-      case 'BigFriends':
-        testInstance = new BigFriendsTest();
-        break;
-      case 'Multiplication':
-        testInstance = new MultiplicationTest();
-        break;
-      default:
-        console.error('Invalid test type');
-        return;
-    }
-    testInstance.startTest(); // Start the test based on the retrieved parameters
-
-    // Handling button clicks
-    const quitBtn = document.getElementById('Quit-Button');
-    if (quitBtn) {
-      quitBtn.addEventListener('click', function() {
-        // Implement functionality for Quit button
-        window.location.href = '/some-other-page'; // Redirect or perform any other action
-      });
-    }
-
-    const nextBtn = document.getElementById('Next-Button');
-    if (nextBtn) {
-      nextBtn.addEventListener('click', function() {
-        // Implement functionality for Next button
-        testInstance.nextQuestion(); // Assuming nextQuestion() is a method in your test classes
-      });
-    }
-  } else {
-    console.error('Missing test parameters.');
-  }
-
-});
+      <script src="/bundle.js"> 
+        document.addEventListener('DOMContentLoaded', function() {
+          document.getElementById('result').focus();
+        });
       </script>
 </body>
 </html>

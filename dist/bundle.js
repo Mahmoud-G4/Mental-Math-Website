@@ -307,6 +307,74 @@ var SmallFriendsTest = require('./smallFriends_test');
 var BigFriendsTest = require('./bigFriends_test');
 var MultiplicationTest = require('./Multiplication_test');
 
+// Setting Listeners when a button is clicked for Test Level, Test Type, and Test Genre:
+document.addEventListener('DOMContentLoaded', function () {
+  // Retrieve values from localStorage
+  var testType = localStorage.getItem('testType');
+  var testLVL = localStorage.getItem('testLVL');
+  var testGenre = localStorage.getItem('testGenre');
+  if (testType && testLVL && testGenre) {
+    var testInstance;
+    switch (testType) {
+      case 'Direct':
+        testInstance = new DirectTest(testLVL);
+        clearPara();
+        break;
+      case 'SmallFriends':
+        testInstance = new SmallFriendsTest(testLVL);
+        clearPara();
+        break;
+      case 'BigFriends':
+        testInstance = new BigFriendsTest(testLVL);
+        clearPara();
+        break;
+      case 'Multiplication':
+        testInstance = new MultiplicationTest(testLVL);
+        clearPara();
+        break;
+      default:
+        console.error('Invalid test type');
+        clearPara();
+        return;
+    }
+    testInstance.startTest(); // Start the test based on the retrieved parameters
+
+    // Handling button clicks
+    var quitBtn = document.getElementById('Quit-Button');
+    if (quitBtn) {
+      quitBtn.addEventListener('click', function () {
+        // Implement functionality for Quit button
+        window.location.replace('/Test-Choice-Page');
+      });
+    }
+    var nextBtn = document.getElementById('Next-Button');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        // Implement functionality for Next button
+        testInstance.nextQuestion(); // Assuming nextQuestion() is a method in your test classes
+      });
+    }
+  } else {
+    console.error('Missing test parameters.');
+  }
+});
+function clearPara() {
+  // Clear stored values
+  localStorage.removeItem('testType');
+  localStorage.removeItem('testLVL');
+  localStorage.removeItem('testGenre');
+}
+;
+
+},{"./Direct_test":1,"./Multiplication_test":2,"./bigFriends_test":5,"./smallFriends_test":7}],4:[function(require,module,exports){
+"use strict";
+
+// Importing Related Classes:
+var DirectTest = require('./Direct_test');
+var SmallFriendsTest = require('./smallFriends_test');
+var BigFriendsTest = require('./bigFriends_test');
+var MultiplicationTest = require('./Multiplication_test');
+
 // Variables to store testType and testLVL
 var testLVL;
 var testType;
@@ -316,7 +384,7 @@ var testGenre;
 // Setting Listeners when a button is clicked for Test Level, Test Type, and Test Genre:
 document.addEventListener('DOMContentLoaded', function () {
   var preMadeBtn = document.getElementById('Pre-Made-btn');
-  var generatedBtn = document.getElementById('Generated-btn');
+  var generatedBtn = document.getElementById('Generated_btn');
   var lvl1Btn = document.getElementById('LVL1-TestBtn');
   var lvl2Btn = document.getElementById('LVL2-TestBtn');
   var lvl3Btn = document.getElementById('LVL3-TestBtn');
@@ -327,14 +395,14 @@ document.addEventListener('DOMContentLoaded', function () {
   var startTestBtn = document.getElementById('startTestBtn');
 
   // Event Listener for Test Genre
-  if (preMadeBtn) preMadeBtn.addEventListener('click', function () {
-    testGenre = setTestGenre('Pre-Made');
+  if (generatedBtn) generatedBtn.addEventListener('click', function () {
+    testGenre = setTestGenre('Generated');
     localStorage.setItem('testGenre', testGenre);
     console.log('Test Genre has been set to:', testGenre);
     checkSelections();
   });
-  if (generatedBtn) generatedBtn.addEventListener('click', function () {
-    testGenre = setTestGenre('Generated');
+  if (preMadeBtn) preMadeBtn.addEventListener('click', function () {
+    testGenre = setTestGenre('Pre-Made');
     localStorage.setItem('testGenre', testGenre);
     console.log('Test Genre has been set to:', testGenre);
     checkSelections();
@@ -441,13 +509,13 @@ function setTestLVL(testLVLchoice) {
 function setTestType(testTypeChoice) {
   switch (testTypeChoice) {
     case 'Direct':
-      return new DirectTest();
+      return 'Direct';
     case 'SmallFriends':
-      return new SmallFriendsTest();
+      return 'SmallFriends';
     case 'BigFriends':
-      return new BigFriendsTest();
+      return 'BigFriends';
     case 'Multiplication':
-      return new MultiplicationTest();
+      return 'Multiplication';
     default:
       console.error('Invalid test type');
       return null;
@@ -474,7 +542,7 @@ function checkSelections() {
   }
 }
 
-},{"./Direct_test":1,"./Multiplication_test":2,"./bigFriends_test":4,"./smallFriends_test":6}],4:[function(require,module,exports){
+},{"./Direct_test":1,"./Multiplication_test":2,"./bigFriends_test":5,"./smallFriends_test":7}],5:[function(require,module,exports){
 "use strict";
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
@@ -606,7 +674,7 @@ var BigFriendsTest = /*#__PURE__*/function () {
 }();
 module.exports = BigFriendsTest;
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 require("./Test-Type-Validaiton");
@@ -614,8 +682,9 @@ require("./bigFriends_test");
 require("./Direct_test");
 require("./Multiplication_test");
 require("./smallFriends_test");
+require("./Test-Initialize");
 
-},{"./Direct_test":1,"./Multiplication_test":2,"./Test-Type-Validaiton":3,"./bigFriends_test":4,"./smallFriends_test":6}],6:[function(require,module,exports){
+},{"./Direct_test":1,"./Multiplication_test":2,"./Test-Initialize":3,"./Test-Type-Validaiton":4,"./bigFriends_test":5,"./smallFriends_test":7}],7:[function(require,module,exports){
 "use strict";
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
@@ -747,4 +816,4 @@ var SmallFriendsTest = /*#__PURE__*/function () {
 }();
 module.exports = SmallFriendsTest;
 
-},{}]},{},[5]);
+},{}]},{},[6]);
