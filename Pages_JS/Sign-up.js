@@ -50,7 +50,7 @@ const signUpHandler = async (req, res) => {
           service: 'Outlook365', // Use Outlook service
           auth: {
             user: 'mental-math45@outlook.com',
-            pass: 'mental-math-project45' // Consider using an app password if needed
+            pass: 'mental-math-project45' 
           }
         });
 

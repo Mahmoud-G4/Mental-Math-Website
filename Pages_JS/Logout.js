@@ -1,13 +1,12 @@
 const logoutHandler = (req, res) => {
-    req.session.destroy((err) => {
-      if (err) {
-        console.error('Error during logout:', err);
-        return res.status(500).send('Logout failed.');
-      }
-      // Redirect to the login page after logging out
-      res.redirect('/login_page');
-    });
-  };
-  
-  module.exports = logoutHandler;
-  
+  req.logout((err) => {
+    if (err) {
+      console.error('Logout error:', err);
+      return res.status(500).send('An error occurred during logout');
+    }
+    req.flash('success', 'Successfully logged out'); // Optional flash message
+    res.redirect('/'); // Redirect to home page
+  });
+};
+
+module.exports = logoutHandler;

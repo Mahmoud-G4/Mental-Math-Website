@@ -18,29 +18,37 @@
 </head>
 <body>
   <div class="wrapper">
-  <form action="#">
+    <form action="/signup" method="POST">
       <a href="javascript:void(0);" style="background-color: #fff;" class="learnBtn back-btn" onclick="goBack()">
           <i class="fa-solid fa-arrow-left" style="color: black;"></i>
       </a>
       <h2>Register</h2>
       <div class="input-field">
-          <input type="text" required>
+          <input type="text" name="user_name" required>
           <label>Enter Your Name</label>
       </div>
       <div class="input-field">
-          <input type="text" required>
+          <input type="text" name="email" required>
           <label>Enter Your Email</label>
       </div>
       <div class="input-field">
-          <input type="password" required>
+          <input type="password" name="password" required>
           <label>Enter Your Password</label>
       </div>
       <div class="input-field">
-          <input type="text" required>
+        <input type="password" name="confirm_password" required>
+        <label>Enter Your Password</label>
+    </div>
+    <div class="input-field">
+        <input type="number" name="age" required>
+        <label>Enter Your Age</label>
+    </div>
+      <div class="input-field">
+          <input type="text" name="phone" required>
           <label>Enter Your Phone Number</label>
       </div>
       <div class="input-field">
-          <select required>
+          <select name="gender" required>
               <option value="" disabled selected>Select Your Gender</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -59,7 +67,7 @@
       </div>
   </form>
   </div > 
-  <script src='https://unpkg.com/feather-icons'></script><script  src="../login.js"></script>
+  <script src='https://unpkg.com/feather-icons'></script><script  src="../Sign-up.js"></script>
 </body>
 
 </html>
