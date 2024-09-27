@@ -249,6 +249,11 @@ app.get('/Pre-Made-Tests-type',(req,res)=>{
   res.render('Pre-Made-Tests-type')
 })
 
+app.get('/Competition-Entry-Page', (req, res) => {
+  res.render('Competition-Entry-Page');
+});
+
+
 //
 // End of the Routes
 //

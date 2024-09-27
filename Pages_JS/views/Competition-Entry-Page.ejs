@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Competition-Entry-Page.css" >
+    <title>Document</title>
+</head>
+<body>
+<div class="signupSection">
+  <div class="info">
+    <div class="Go-Back">
+        <button id="go-back" class="button-85">Go Back</button>
+        <script>
+            document.getElementById('go-back').addEventListener('click',function() {
+            window.location.replace('/Competition-Page');
+            });
+        </script>
+    </div>
+    <h2>Geniuses Mental Math Acadmey</h2>
+    <i class="icon ion-ios-ionic-outline" ></i>
+    <p>The Future Is Here</p>
+    <div class="img-container"></div>
+  </div>
+  <form  method="POST" class="signupForm" name="signupform">
+    <h2>WeLcome to The Championship</h2>
+    <ul class="noBullet">
+      <li>
+        <input type="text" class="inputFields" id="username" name="username" value="<%= user.name %>"  readonly/>
+        <input type="text" class="inputFields" id="username" name="student_code" value="<%= user.student_code %>"  readonly/>
+      </li>
+      <li>
+        <input type="text" class="inputFields" id="password" name="email" value="<%= user.email %>" readonly/>
+        <input type="text" class="inputFields" id="password" name="phone" value="<%= user.phone %>" readonly/>
+      </li>
+      <li>
+        <input type="password" class="inputFields" id="Competition-Token" name="Competition-Token" placeholder="Competition-Token" autofocus required/>
+      </li>
+      <li id="center-btn">
+        <input type="submit" id="join-btn" name="join" alt="Join" value="Join">
+      </li>
+    </ul>
+    <script>
+        
+    </script>
+  </form>
+</div>
+</body>
+</html>

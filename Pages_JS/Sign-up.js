@@ -3,6 +3,43 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const db = require('./DataBase_conn'); // Import the database connection
 
+// Function to generate a random 7-digit student code
+function generateStudentCode() {
+  const min = 1000000;  // 7 digits minimum
+  const max = 9999999;  // 7 digits maximum
+  const code = Math.floor(Math.random() * (max - min + 1)) + min;
+  console.log('Generated Student Code:', code);  // Log the generated code
+  return code;
+}
+
+// Function to check if the generated student code is unique
+async function isCodeUnique(code) {
+  return new Promise((resolve, reject) => {
+    const query = 'SELECT COUNT(*) as count FROM users WHERE student_code = ?';
+    db.query(query, [code], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows[0].count === 0);
+      }
+    });
+  });
+}
+
+// Function to generate a unique student code
+async function generateUniqueCode() {
+  let code;
+  let isUnique = false;
+
+  while (!isUnique) {
+    code = generateStudentCode();  // Generate a random 7-digit code
+    isUnique = await isCodeUnique(code);  // Check uniqueness in the database
+  }
+
+  console.log('Unique Student Code:', code);  // Log the generated code
+  return code;  // Return the unique code
+}
+
 const signUpHandler = async (req, res) => {
   const { user_name, password, email, age, phone, confirm_password, gender } = req.body;
 
@@ -15,9 +52,9 @@ const signUpHandler = async (req, res) => {
   }
 
   try {
-    // Check if the email or username already exists in the database
-    const checkUserSql = `SELECT * FROM users WHERE email = ? OR name = ?`;
-    db.query(checkUserSql, [email, user_name], async (err, results) => {
+    // Check if the email already exists in the database
+    const checkUserSql = `SELECT * FROM users WHERE email = ?`;
+    db.query(checkUserSql, [email], async (err, results) => {
       if (err) {
         console.error('Error checking existing users:', err);
         return res.status(500).send('Server error');
@@ -25,7 +62,7 @@ const signUpHandler = async (req, res) => {
 
       // If the user already exists, return an error message
       if (results.length > 0) {
-        return res.status(400).send('An account with this email or username already exists.');
+        return res.status(400).send('An account with this email already exists.');
       }
 
       // Hash the password
@@ -35,9 +72,13 @@ const signUpHandler = async (req, res) => {
       const token = crypto.randomBytes(20).toString('hex');
       const expirationTime = new Date(Date.now() + 3600000); // 1 hour
 
-      // Proceed with registration
-      const insertUserSql = `INSERT INTO users (name, email, password, age, phone, gender, verification_token, token_expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-      const values = [user_name, email, hashedPassword, age, phone, gender, token, expirationTime];
+      // Generate a unique student code
+      const studentCode = await generateUniqueCode();
+
+      // Proceed with registration, including the unique student code
+      const insertUserSql = `INSERT INTO users (name, student_code, email, password, age, phone, gender, verification_token, token_expires_at) 
+                             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+      const values = [user_name,studentCode, email, hashedPassword, age, phone, gender, token, expirationTime];
 
       db.query(insertUserSql, values, (err, result) => {
         if (err) {
@@ -50,7 +91,7 @@ const signUpHandler = async (req, res) => {
           service: 'Outlook365', // Use Outlook service
           auth: {
             user: 'mental-math45@outlook.com',
-            pass: 'mental-math-project45' 
+            pass: 'mental-math-project45'
           }
         });
 
@@ -65,7 +106,7 @@ const signUpHandler = async (req, res) => {
         transporter.sendMail(mailOptions, (err) => {
           if (err) {
             console.error('Error sending verification email:', err);
-            return res.status(500).send('Server error');
+            return res.status(500).send('Server error, couldnt send verfication e-mail');
           }
           // Redirect to the login page or a page indicating that verification email has been sent
           res.redirect('/login_page');
