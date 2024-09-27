@@ -59,8 +59,8 @@ class MultiplicationTest {
 
   displayNumbers(num1, num2) {
     document.getElementById('num1').value = num1;
-    document.getElementById('num2').value = num2;
-    document.getElementById('operation').innerText = '×'; // Display multiplication sign
+    document.getElementById('num3').value = num2;
+    document.getElementById('num2').innerText = '×'; // Display multiplication sign
   }
 
   submitAnswer(userAnswer) {
