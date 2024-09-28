@@ -81,7 +81,8 @@ class DirectTest {
     document.getElementById('num2').value = num2;
     document.getElementById('num3').value = num3;
     document.getElementById('num4').value = num4;
-    document.getElementById('operation').innerText = '+'; // Display addition sign
+    document.getElementById('questionCounter').value =this.currentQuestion +"/"+this.numQuestions;
+    document.getElementById('timeRemaining').value=this.timer;
   }
 
   // Handle the submission of an answer

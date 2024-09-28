@@ -56,6 +56,8 @@ class SmallFriendsTest {
     document.getElementById('num2').value = num2;
     document.getElementById('num3').value = num3;
     document.getElementById('num4').value = num4;
+    document.getElementById('questionCounter').value =this.currentQuestion +"/"+this.numQuestions;
+    document.getElementById('timeRemaining').value=this.timer;
   }
 
   submitAnswer(userAnswer) {

@@ -110,7 +110,8 @@ var DirectTest = /*#__PURE__*/function () {
       document.getElementById('num2').value = num2;
       document.getElementById('num3').value = num3;
       document.getElementById('num4').value = num4;
-      document.getElementById('operation').innerText = '+'; // Display addition sign
+      document.getElementById('questionCounter').value = this.currentQuestion + "/" + this.numQuestions;
+      document.getElementById('timeRemaining').value = this.timer;
     }
 
     // Handle the submission of an answer
@@ -255,7 +256,9 @@ var MultiplicationTest = /*#__PURE__*/function () {
     value: function displayNumbers(num1, num2) {
       document.getElementById('num1').value = num1;
       document.getElementById('num3').value = num2;
-      document.getElementById('num2').innerText = '×'; // Display multiplication sign
+      document.getElementById('num2').value = '×'; // Display multiplication sign
+      document.getElementById('questionCounter').value = this.currentQuestion + "/" + this.numQuestions;
+      document.getElementById('timeRemaining').value = this.timer;
     }
   }, {
     key: "submitAnswer",
@@ -628,6 +631,8 @@ var BigFriendsTest = /*#__PURE__*/function () {
       document.getElementById('num2').value = num2;
       document.getElementById('num3').value = num3;
       document.getElementById('num4').value = num4;
+      document.getElementById('questionCounter').value = this.currentQuestion + "/" + this.numQuestions;
+      document.getElementById('timeRemaining').value = this.timer;
     }
   }, {
     key: "submitAnswer",
@@ -770,6 +775,8 @@ var SmallFriendsTest = /*#__PURE__*/function () {
       document.getElementById('num2').value = num2;
       document.getElementById('num3').value = num3;
       document.getElementById('num4').value = num4;
+      document.getElementById('questionCounter').value = this.currentQuestion + "/" + this.numQuestions;
+      document.getElementById('timeRemaining').value = this.timer;
     }
   }, {
     key: "submitAnswer",

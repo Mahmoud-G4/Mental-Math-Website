@@ -69,6 +69,22 @@ body {
   }
 }
 
+#questionCounter{
+  border: none;
+  background: #1d212B;
+  color: rgb(255, 255, 255);
+  text-align: right;
+  font-weight: bold;
+}
+
+#timeRemaining{
+  border: none;
+    background: #1d212B;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    font-weight: bold;
+}
+
 #test-form-container {
     margin: 20px auto;
     padding: 20px;

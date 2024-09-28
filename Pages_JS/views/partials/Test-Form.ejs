@@ -2,23 +2,23 @@
   <div id="test-form-container">
     <form id="testForm" class="test-form">
       <div class="Form-Header">
-        <label id="timeRemaining">0:00</label>
-      <label id="questionCounter">1/100</label>
+      <input id="timeRemaining" readonly>
+      <input id="questionCounter" readonly>
       </div>
       <div class="number-display">
-        <input type="text" id="num1" name="num1" value="0" readonly>  
+        <input type="text" id="num1" name="num1"  readonly>  
         
-        <input type="text" id="num2" name="num2" value="0" readonly>
+        <input type="text" id="num2" name="num2"  readonly>
 
-        <input type="text" id="num3" name="num3" value="0" readonly>
+        <input type="text" id="num3" name="num3"  readonly>
   
-        <input type="text" id="num4" name="num4" value="0" readonly>
+        <input type="text" id="num4" name="num4"  readonly>
   
         <input type="number" id="result" name="result" autofocus required >
       </div>
       <div class="Form-Button-Container">
-         <button type="submit" class="Form-Button" id="Quit-Button"><span class="btnInner">Quit</span></button>
          <button type="submit" class="Form-Button" id="Next-Button"><span class="btnInner">Next</span></button>
+         <button type="submit" class="Form-Button" id="Quit-Button"><span class="btnInner">Quit</span></button>
       </div>
     </form>
   </div>
