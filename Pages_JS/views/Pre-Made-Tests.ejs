@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Pre-Made-Tests.css">
+    <link rel="stylesheet" href="/navBar.css" >
+    <link rel="stylesheet" href="/Footer.css" >
+    
+    <title>Genius Acadmy</title>
+
+</head>
+<body>
+    <div>
+        <%- include('partials/navBar') %>
+    </div>
+    <script src="https://kit.fontawesome.com/52c5fd92a7.js" crossorigin="anonymous"></script>
+    <div class="First-Choice" id="First-Choice">
+      <div class="container">
+        <div class="card">
+          <div class="face face1">
+            <div class="content">
+              <i class="fa-solid fa-child"></i>         
+              <h3>LeveL 1</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>For Ages Less than 7</p>
+              <button type="button" id="LVL1-TestBtn">Continue</button>
+            </div>
+          </div>
+       </div>
+       
+       <div class="card">
+          <div class="face face1">
+            <div class="content">
+              <i class="fa-solid fa-children"></i>
+         <h3>LeveL 2</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>For Ages Between 7 And 10</p>
+              <button type="button" id="LVL2-TestBtn">Continue</button>
+            </div>
+          </div>
+       </div>
+       
+       
+       <div class="card">
+          <div class="face face1">
+            <div class="content">
+              <i class="fa-solid fa-users"></i>
+               <h3>Level 3</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>For Ages More Than 10</p>
+              <button type="button" id="LVL3-TestBtn">Continue</button>
+            </div>
+          </div>
+       </div>
+     </div>
+    </div>
+    <div class="Second-Choice" id="Second-Choice" style="display: none;">
+      <!-- First Row -->
+      <div class="container">
+       <div class="card">
+         <div class="face face1">
+           <div class="content">
+                     
+             <h3>Direct</h3>
+           </div>
+         </div>
+         <div class="face face2">
+           <div class="content">
+             <button type="button" id="Direct-TestBtn">Choose Test</button>
+           </div>
+         </div>
+      </div>
+      
+      <div class="card">
+         <div class="face face1">
+           <div class="content">         
+        <h3>Small Friends</h3>
+           </div>
+         </div>
+         <div class="face face2">
+           <div class="content">
+             <button type="button" id="SmallFriends-TestBtn">Choose Test</button>
+           </div>
+         </div>
+      </div>
+     
+     </div>
+     <!-- First Row -->
+     
+     <!-- Second Row -->
+     <div class="container">
+     <div class="card">
+     <div class="face face1">
+     <div class="content">        
+       <h3>Big Friends</h3>
+     </div>
+     </div>
+     <div class="face face2">
+     <div class="content">
+       <button type="button" id="BigFriends-TestBtn">Choose Test</button>
+     </div>
+     </div>
+     </div>
+     
+     <div class="card">
+     <div class="face face1">
+     <div class="content">
+     <h3>Multiplicstion</h3>
+     </div>
+     </div>
+     <div class="face face2">
+     <div class="content">
+       <button type="button" id="Multiplication-TestBtn">Choose Test</button>
+     </div>
+     </div>
+     </div>
+     </div>
+     <!-- Second Row -->
+         </div>    
+         <script src="/bundle.js"></script>
+</body>
+</html>

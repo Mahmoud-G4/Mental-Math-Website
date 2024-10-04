@@ -383,7 +383,8 @@ var testLVL;
 var testType;
 var testInstance;
 var testGenre;
-
+var FirstChoice = document.getElementById('First-Choice');
+var SecondChoice = document.getElementById('Second-Choice');
 // Setting Listeners when a button is clicked for Test Level, Test Type, and Test Genre:
 document.addEventListener('DOMContentLoaded', function () {
   var preMadeBtn = document.getElementById('Pre-Made-btn');
@@ -416,18 +417,21 @@ document.addEventListener('DOMContentLoaded', function () {
     testLVL = setTestLVL('LVL 1');
     localStorage.setItem('testLVL', testLVL);
     console.log('Test Level has been set to:', testLVL);
+    changeView();
     checkSelections();
   });
   if (lvl2Btn) lvl2Btn.addEventListener('click', function () {
     testLVL = setTestLVL('LVL 2');
     localStorage.setItem('testLVL', testLVL);
     console.log('Test Level has been set to:', testLVL);
+    changeView();
     checkSelections();
   });
   if (lvl3Btn) lvl3Btn.addEventListener('click', function () {
     testLVL = setTestLVL('LVL 3');
     localStorage.setItem('testLVL', testLVL);
     console.log('Test Level has been set to:', testLVL);
+    changeView();
     checkSelections();
   });
 
@@ -479,6 +483,21 @@ document.addEventListener('DOMContentLoaded', function () {
     startTestBtn.addEventListener('click', Redirection);
   }
 });
+
+// Function to switch between views
+function changeView() {
+  // Hide the First-Choice div
+
+  FirstChoice.classList.remove('visible'); // Optionally hide it
+  SecondChoice.classList.add('visible');
+  SecondChoice.style.display = 'block'; // Ensure it's displayed before fading in
+
+  // Use setTimeout to wait for the display to be set before changing the opacity
+  setTimeout(function () {
+    SecondChoice.classList.add('visible'); // Add class to trigger fade-in
+  }, 50);
+  FirstChoice.style.display = 'none';
+}
 
 // Function for setting the test genre and resetting values
 function setTestGenre(selectedGenre) {

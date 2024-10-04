@@ -13,40 +13,17 @@
          <li class="logo"></li>
          <li class="items"><a href="/home_page">Home</a></li>
          <li class="items"><a href="/Competition-page">Competition</a></li>
-         <li class="items"><a href="/Test-Choice-Page">Test Choice Page</a></li>
+         <li class="items"><a href="/Test-Choice-Page">Parctice</a></li>
          <li class="items">
             <% if (!user) { %>
                 <a href="/signup_page">Sign In</a>
             <% } else { %>
                 <div class="dropdown">
                     <a href="/profile_page" class="profile-link">Profile</a>
-                    <i class="fas fa-caret-down dropdown-arrow"></i> <!-- Arrow for dropdown -->
-                    <ul class="dropdown-menu">
-                        <% if (user && user.role === 'super_admin') { %>
-                            <li><a href="/super_admin_page">Users Page</a></li>
-                        <% } %>
-                        <!-- You can add more links here if needed -->
-                    </ul>
                 </div>
             <% } %>
          </li>
       </ul>
    </nav>
-
-   <script>
-      $(document).ready(function(){
-         // Toggle dropdown when clicking the arrow
-         $('.dropdown-arrow').click(function(){
-            $(this).siblings('.dropdown-menu').toggle();
-         });
-
-         // Hide dropdown when clicking outside
-         $(document).click(function(e) {
-            if (!$(e.target).closest('.dropdown').length) {
-               $('.dropdown-menu').hide();
-            }
-         });
-      });
-   </script>
 </body>
 </html>

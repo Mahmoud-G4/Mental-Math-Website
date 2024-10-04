@@ -4,50 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Competition-Entry-Page.css" >
-    <title>Document</title>
+    <link rel="stylesheet" href="/pop-up.css" >
+    <title>Competition Entry</title>
 </head>
 <body>
 <div class="signupSection" id="blur">
   <div class="info">
     <div id="center-btn">
         <input type="submit" id="go-back" value="Go Back">
-            <script>
-                document.getElementById('go-back').addEventListener('click',function() {
+        <script>
+            document.getElementById('go-back').addEventListener('click', function() {
                 window.location.replace('/Competition-Page');
-                });
-            </script>
+            });
+        </script>
     </div>
-    <h2>Geniuses Mental Math Acadmey</h2>
-    <i class="icon ion-ios-ionic-outline" ></i>
+    <h2>Geniuses Mental Math Academy</h2>
+    <i class="icon ion-ios-ionic-outline"></i>
     <p>The Future Is Here</p>
     <div class="img-container"></div>
   </div>
-  <form  class="signupForm" name="signupform">
-    <h2>WeLcome to The Championship</h2>
+  <form class="signupForm" id="competitionForm" name="signupform" action="/Enter-Competition" method="post">
+    <h2>Welcome to The Championship</h2>
     <ul class="noBullet">
       <li>
-        <input type="text" class="inputFields" id="username" name="username" value="<%= user.name %>"  readonly/>
-        <input type="text" class="inputFields" id="student_code" name="student_code" value="<%= user.student_code %>"  readonly/>
+        <input type="text" class="inputFields" id="username" name="username" value="<%= user.name %>" readonly />
+        <input type="text" class="inputFields" id="student_code" name="student_code" value="<%= user.student_code %>" readonly />
       </li>
       <li>
-        <input type="text" class="inputFields" id="email" name="email" value="<%= user.email %>" readonly/>
-        <input type="text" class="inputFields" id="phone" name="phone" value="<%= user.phone %>" readonly/>
+        <input type="text" class="inputFields" id="email" name="email" value="<%= user.email %>" readonly />
+        <input type="text" class="inputFields" id="phone" name="phone" value="<%= user.phone %>" readonly />
       </li>
       <li>
-        <input type="password" class="inputFields" id="Competition-Token" name="Competition-Token" placeholder="Competition-Token" autofocus required />
+        <input type="password" class="inputFields" id="CompetitionToken" name="CompetitionToken" placeholder="Competition Token" autofocus required />
       </li>
       <li>
-        <h4>Please make sure That your Information are correct. <br>
-        They will be used to Contact you and make your certificate.
+        <h4>Please make sure your information is correct. <br>
+        They will be used to contact you and create your certificate.
         </h4>
       </li>
       <li>
         <div class="Go-Back">
-            <button id="join-Btn" class="button-85">Join</button>
+            <button id="join-Btn" type="submit" class="button-85">Join</button>
         </div>        
       </li>
     </ul>
   </form>
 </div>
+<!-- Custom Pop-up Elements -->
+<div id="popupOverlay"></div>
+<div id="popupMessage">
+    <p id="popupText"></p>
+</div>
+<script>
+  document.getElementById('competitionForm').addEventListener('submit', async function(event) {
+      event.preventDefault(); // Prevent default form submission
+  
+      // Collect form data manually into a JSON object
+      const formObj = {
+          username: document.getElementById('username').value,
+          student_code: document.getElementById('student_code').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          CompetitionToken: document.getElementById('CompetitionToken').value
+      };
+  
+      try {
+          // Send form data via AJAX POST request as JSON
+          const response = await fetch('/Enter-Competition', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formObj)
+          });
+  
+          const result = await response.json();
+          if (response.ok) {
+              showPopup(result.message, '/Competition-page'); // Show success pop-up and redirect
+          } else {
+              showPopup(`Error: ${result.message}`, null); // Show error pop-up without redirect
+          }
+      } catch (error) {
+          showPopup('An unexpected error occurred. Please try again.', null);
+      }
+  });
+  
+  // Function to show the custom pop-up
+  function showPopup(message, redirectUrl) {
+      const popupOverlay = document.getElementById('popupOverlay');
+      const popupMessage = document.getElementById('popupMessage');
+      const popupText = document.getElementById('popupText');
+  
+      popupText.textContent = message;
+      popupOverlay.style.display = 'block';
+      popupMessage.style.display = 'block';
+  
+      if (redirectUrl) {
+          // Redirect after 3 seconds
+          setTimeout(() => {
+              window.location.href = redirectUrl;
+          }, 3000); // 3 seconds
+      } else {
+          // Hide the pop-up after 3 seconds without redirection
+          setTimeout(() => {
+              popupOverlay.style.display = 'none';
+              popupMessage.style.display = 'none';
+          }, 3000); // 3 seconds
+      }
+  }
+</script>
 </body>
 </html>

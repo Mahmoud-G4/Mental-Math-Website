@@ -6,10 +6,12 @@ const flash = require('connect-flash');
 const signUpHandler = require('./Sign-up');
 const loginHandler = require('./loginHandler');
 const logoutHandler = require('./Logout');
+const CompetitionHandler = require('./Enter-Competition')
 const passport = require('passport');
 require('./passport-config'); // Ensure Passport configuration is required
 const connection = require('./DataBase_conn'); // Use the correct import for the connection
 const bcrypt = require('bcrypt');
+const { allowedNodeEnvironmentFlags } = require('process');
 
 const app = express();
 
@@ -111,9 +113,9 @@ function checkNotAuthenticated(req, res, next) {
 // Serve static files
 app.use(express.static(path.join(__dirname, '../Pages_HTML')));
 // Serve static files from the images directory
+app.use(express.static(path.join(__dirname, '../Pages_JS')));
 app.use('/images', express.static(path.join(__dirname, '../images')));
 app.use(express.static(path.join(__dirname, '../Pages_CSS')));
-app.use(express.static(path.join(__dirname, '../Pages_JS')));
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use('/bootstrap', express.static(path.join(__dirname, '../node_modules/bootstrap/dist')));
 
@@ -125,6 +127,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.post('/signup', signUpHandler);
 app.post('/login', loginHandler);
 app.post('/logout', logoutHandler);
+app.post('/Enter-Competition', CompetitionHandler);
 
 // Route to promote a user to admin
 app.get('/promote_to_admin/:id', isSuperAdmin, (req, res) => {
@@ -202,10 +205,21 @@ app.get('/', (req, res) => {
   res.render('Home-Page');
 });
 
-app.get('/admin_page', (req, res) => {
-  res.render('Admin-Page');
+app.get('/Adminstrator-DashBoard', (req, res) => {
+  res.render('Adminstration/Adminstrator-DashBoard');
 });
 
+app.get('/Users-Table', (req, res) => {
+  res.render('Adminstration/pages/Users-Table');
+});
+
+app.get('/Admins-Table', (req, res) => {
+  res.render('Adminstration/pages/Admins-Table');
+});
+
+app.get('/Competition-Participants-Table', (req, res) => {
+  res.render('Adminstration/pages/Competition-Participants-Table');
+});
 app.get('/Test-Page', (req, res) => {
   res.render('Test-Page');
 });
@@ -241,12 +255,8 @@ app.get('/Generated-Tests',(req,res)=> {
   res.render('Generated-Tests');
 })
 
-app.get('/Pre-Made-Tests-lvl',(req,res)=>{
-  res.render('Pre-Made-Tests-lvl')
-})
-
-app.get('/Pre-Made-Tests-type',(req,res)=>{
-  res.render('Pre-Made-Tests-type')
+app.get('/Pre-Made-Tests',(req,res)=>{
+  res.render('Pre-Made-Tests');
 })
 
 app.get('/Competition-Entry-Page', (req, res) => {

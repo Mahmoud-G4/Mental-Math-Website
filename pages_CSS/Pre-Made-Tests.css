@@ -78,7 +78,7 @@ body{
     text-align: center;
   }
   
-  .container .card .face.face1 .content a{
+  .container .card .face.face1 .content a, button{
      transition: .5s;
   }
   
@@ -101,7 +101,7 @@ body{
   
   }
   
-  .container .card .face.face2 .content p, a{
+  .container .card .face.face2 .content p, a, button{
     font-size: 1rem;
     font-weight: bolder;
     margin: 0 ;
@@ -109,7 +109,7 @@ body{
     color:#333;
   }
   
-  .container .card .face.face2 .content a{
+  .container .card .face.face2 .content a, button{
     text-decoration:none;
     background-color: aliceblue;
     color: black;
@@ -122,10 +122,29 @@ body{
     font-size: 2rem;
   }
   
-  .container .card .face.face2 .content a:hover{
+  .container .card .face.face2 .content a,button:hover{
     background: #536df1e0 ;
     transition: 0.5s;
     color: whitesmoke; 
     box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
   }
+
+  /* Adding transition for changing views */
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.Second-Choice {
+  opacity: 0; /* Start as invisible */
+  transition: opacity 0.5s ease; /* Change opacity over 0.5 seconds */
+  visibility: hidden; /* Hidden when opacity is 0 */
+}
+
+.Second-Choice.visible {
+  opacity: 1; /* Fully visible */
+  visibility: visible; /* Ensure visibility when fully opaque */
+}
+
   

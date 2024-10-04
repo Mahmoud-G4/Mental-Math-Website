@@ -15,7 +15,6 @@
     background: #e6e6e6;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
     margin-top: 20px;
 }
 
@@ -115,4 +114,27 @@
         width: 100%;
         padding: 0;
     }
+}
+
+
+/* DashBoard Button */
+.Adminstrator-DashBoard-Container{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+.Admin-DashBoard{
+    text-decoration: none;
+    border: 1px solid rgba(10, 180, 180, 1);
+    background: rgba(20, 20, 20, .6);
+    font-size: 18px;
+    color: white;
+    margin-top: 20px;
+    padding: 10px 50px;
+    cursor: pointer;
+    transition: .4s;
+    &:hover {
+        background: rgba(20, 20, 20, .8);
+        padding: 10px 80px;
+      }
 }
