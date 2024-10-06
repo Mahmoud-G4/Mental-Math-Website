@@ -113,40 +113,6 @@
     <%- include('partials/navBar') %>
    <div class="container">
       <h1>Super Admin Dashboard</h1>
-
-      <h2>All Users Table</h2>
-      <table summary="User management table" class="table table-bordered table-hover dt-responsive">
-         <caption class="text-center">User management dashboard:</caption>
-         <thead>
-            <tr>
-               <th>Username</th>
-               <th>Email</th>
-               <th>Role</th>
-               <th>Student Code</th> <!-- New column for Student Code -->
-               <th>Actions</th>
-            </tr>
-         </thead>
-         <tbody>
-            <% users.forEach(user => { %>
-            <tr>
-               <td><%= user.name %></td>
-               <td><%= user.email %></td>
-               <td><%= user.role %></td>
-               <td><%= user.student_code %></td> <!-- Displaying Student Code -->
-               <td class="actions">
-                  <% if (user.role !== 'super_admin') { %>
-                     <% if (user.role === 'admin') { %>
-                        <a href="/demote_to_user/<%= user.ID %>" class="btn btn-danger">Demote to User</a>
-                     <% } else { %>
-                        <a href="/promote_to_admin/<%= user.ID %>" class="btn">Promote to Admin</a>
-                     <% } %>
-                  <% } %>
-               </td>
-            </tr>
-            <% }); %>
-         </tbody>
-      </table>
-
       <h2>Admins Table</h2>
       <table summary="Admin management table" class="table table-bordered table-hover dt-responsive">
          <caption class="text-center">Admin management dashboard:</caption>
@@ -161,24 +127,20 @@
          </thead>
          <tbody>
             <% users.forEach(user => { %>
-               <% if (user.role === 'admin' || user.role === 'super_admin') { %>
+                <% if (user.role === 'admin' || user.role === 'super_admin') { %>  <!-- Only showing admins -->
                   <tr>
                      <td><%= user.name %></td>
                      <td><%= user.email %></td>
                      <td><%= user.role %></td>
                      <td><%= user.student_code %></td> <!-- Displaying Student Code -->
                      <td class="actions">
-                        <% if (user.role === 'admin') { %>
-                           <a href="/demote_to_user/<%= user.ID %>" class="btn btn-danger">Demote to User</a>
-                        <% } %>
+                        <a href="/demote_to_user/<%= user.ID %>" class="btn btn-danger">Demote to User</a>
                      </td>
                   </tr>
                <% } %>
             <% }); %>
          </tbody>
       </table>
-
-      <p class="p">Demo by [Your Name]. <a href="http://www.sitepoint.com/responsive-data-tables-comprehensive-list-solutions" target="_blank">See article</a>.</p>
    </div>
 
    <!-- jQuery and DataTables JS -->
