@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="apple-touch-icon" sizes="76x76" href="/Adminstration/assets/img/apple-icon.png">
+<link rel="icon" type="image/png" href="/Adminstration/assets/img/favicon.png">
+
+<title>Adminstrator DashBoard</title>
+
+<!--     Fonts and icons     -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+
+
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/52c5fd92a7.js" crossorigin="anonymous"></script>
+
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+<!-- CSS Files -->
+<link id="pagestyle" href="/Adminstration-css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
+<link rel="stylesheet" href="/Competition-Entry-Page.css" >
+  
+</head>
+<body class="g-sidenav-show  bg-gray-100">
+    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
+
+  <div class="sidenav-header">
+    <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <img src="images/main-logo.png" class="navbar-brand-img h-100" alt="main_logo">
+      <span class="ms-1 font-weight-bold text-white">Adminstration</span>
+    </a>
+  </div>
+
+
+  <hr class="horizontal light mt-0 mb-2">
+
+  <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+    <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="nav-link text-white " href="/Adminstrator-DashBoard">
+    
+      <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+        <i class="material-icons opacity-10">dashboard</i>
+      </div>
+    
+    <span class="nav-link-text ms-1">Dashboard</span>
+  </a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link text-white " href="/Upload-Test">
+    
+      <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+        <i class="material-icons opacity-10">table_view</i>
+      </div>
+    
+    <span class="nav-link-text ms-1">UpLoad a Test</span>
+  </a>
+</li>
+  
+<li class="nav-item">
+  <a class="nav-link text-white " href="/Users-Table">
+    
+      <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+        <i class="material-icons opacity-10">table_view</i>
+      </div>
+    
+    <span class="nav-link-text ms-1">Users Table</span>
+  </a>
+</li>
+
+<li class="nav-item"></li>
+  <a class="nav-link text-white " href="/Admins-Table">
+    
+      <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+        <i class="material-icons opacity-10">table_view</i>
+      </div>
+    <span class="nav-link-text ms-1">Adminstrators Table</span>
+  </a>
+</li>
+
+<li class="nav-item"></li>
+  <a class="nav-link text-white " href="/Competition-Participants-Table">
+    
+      <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+        <i class="material-icons opacity-10">table_view</i>
+      </div>
+    <span class="nav-link-text ms-1">Competition Participants</span>
+  </a>
+</li>
+
+  
+  
+    <li class="nav-item mt-3">
+      <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
+    </li>
+  
+<li class="nav-item">
+  <a class="nav-link text-white " href="/profile_page">
+    
+      <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+        <i class="material-icons opacity-10">person</i>
+      </div>
+    
+    <span class="nav-link-text ms-1">Profile</span>
+  </a>
+</li>
+    </aside>
+
+    <!-- The main content of the page -->
+    <main class="main-content border-radius-lg ">
+        <div class="container-fluid py-4">
+          <!-- Upload Form -->
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header pb-0">
+                  <h6>Upload a Test File</h6>
+                </div>
+                <div class="card-body">
+                  <form action="/uploadTest" method="POST" enctype="multipart/form-data" id="upload-form">
+                    <!-- Test Level Selection -->
+                    <div class="form-group">
+                      <label for="testLevel">Select Test Level</label>
+                      <select class="form-control" id="testLevel" name="testLevel" required>
+                        <option value="" disabled selected>Select a level</option>
+                        <option value="Level1">Level 1</option>
+                        <option value="Level2">Level 2</option>
+                        <option value="Level3">Level 3</option>
+                      </select>
+                    </div>
+  
+                    <!-- Test Type Selection -->
+                    <div class="form-group mt-3">
+                      <label for="testType">Select Test Type</label>
+                      <select class="form-control" id="testType" name="testType" required>
+                        <option value="" disabled selected>Select a type</option>
+                        <option value="Direct">Direct</option>
+                        <option value="SmallFriends">Small Friends</option>
+                        <option value="BigFriends">Big Friends</option>
+                        <option value="Multiplication">Multiplication</option>
+                      </select>
+                    </div>
+  
+                    <!-- File Upload -->
+                    <div class="form-group mt-3">
+                      <label for="file">Upload CSV File</label>
+                      <input type="file" class="form-control" id="file" name="file" accept=".csv" required />
+                    </div>
+  
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary mt-4">Upload Test</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </main>
+
+    <!-- Script To handle the Upload -->
+     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('upload-form');
+  const fileInput = document.getElementById('file');
+  const testLevelInput = document.getElementById('testLevel');
+  const testTypeInput = document.getElementById('testType');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    // Ensure file and other fields are selected
+    if (!fileInput.files.length || !testLevelInput.value || !testTypeInput.value) {
+      alert('Please fill all fields and select a file to upload.');
+      return;
+    }
+
+    // Create a FormData object to send the form data
+    const formData = new FormData();
+    formData.append('file', fileInput.files[0]);
+    formData.append('testLevel', testLevelInput.value);
+    formData.append('testType', testTypeInput.value);
+
+    try {
+      // Send the form data to the server
+      const response = await fetch('/uploadTest', {
+        method: 'POST',
+        body: formData,
+      });
+
+      // Handle the server response
+      if (response.ok) {
+        const result = await response.json();
+        alert(`File uploaded successfully: ${result.message}`);
+        // Optionally reset the form
+        form.reset();
+      } else {
+        const error = await response.json();
+        alert(`Failed to upload file: ${error.message}`);
+      }
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert('There was an error uploading the file. Please try again.');
+    }
+  });
+});
+
+     </script>
+</body>
+</html>

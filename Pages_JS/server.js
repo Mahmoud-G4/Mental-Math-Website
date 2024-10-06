@@ -209,6 +209,10 @@ app.get('/Adminstrator-DashBoard', (req, res) => {
   res.render('Adminstration/Adminstrator-DashBoard');
 });
 
+app.get('/Upload-Test', (req, res) => {
+  res.render('Adminstration/pages/Upload-Test');
+});
+
 app.get('/Users-Table', (req, res) => {
   res.render('Adminstration/pages/Users-Table');
 });
