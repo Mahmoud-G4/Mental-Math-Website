@@ -51,7 +51,7 @@ app.get('/promote_to_admin/:id', (req, res) => {
           console.error('Error promoting user:', err);
           return res.status(500).send('Error promoting user');
       }
-      res.redirect('/users_table'); // Redirect back to the super admin page
+      res.redirect('/super_admin_page'); // Redirect back to the super admin page
   });
 });
 
@@ -65,7 +65,7 @@ app.get('/demote_to_user/:id', (req, res) => {
           console.error('Error demoting user:', err);
           return res.status(500).send('Error demoting user');
       }
-      res.redirect('/users_table'); // Redirect back to the super admin page
+      res.redirect('/super_admin_page'); // Redirect back to the super admin page
   });
 });
 
@@ -134,7 +134,7 @@ app.get('/promote_to_admin/:id', isSuperAdmin, (req, res) => {
   const userId = req.params.id;
   connection.query('UPDATE users SET role = ? WHERE id = ?', ['admin', userId], (err, results) => {
       if (err) throw err;
-      res.redirect('/users_table');
+      res.redirect('/super_admin_page');
   });
 });
 
@@ -143,15 +143,15 @@ app.get('/demote_to_user/:id', isSuperAdmin, (req, res) => {
   const userId = req.params.id;
   connection.query('UPDATE users SET role = ? WHERE id = ?', ['user', userId], (err, results) => {
       if (err) throw err;
-      res.redirect('/users_table');
+      res.redirect('/super_admin_page');
   });
 });
 
 
-app.get('/users_table', isSuperAdmin, (req, res) => {
+app.get('/super_admin_page', isSuperAdmin, (req, res) => {
   connection.query('SELECT * FROM users', (err, users) => {
       if (err) throw err;
-      res.render('users_table', { users });
+      res.render('super_admin_page', { users });
   });
 });
 
@@ -209,8 +209,12 @@ app.get('/Adminstrator-DashBoard', (req, res) => {
   res.render('Adminstration/Adminstrator-DashBoard');
 });
 
-app.get('/users_table', (req, res) => {
-  res.render('Users-Table');
+app.get('/Upload-Test', (req, res) => {
+  res.render('Adminstration/pages/Upload-Test');
+});
+
+app.get('/Users-Table', (req, res) => {
+  res.render('Adminstration/pages/Users-Table');
 });
 
 app.get('/Admins-Table', (req, res) => {
@@ -227,8 +231,6 @@ app.get('/Test-Page', (req, res) => {
 app.get('/Test-Choice-Page', (req, res) => {
   res.render('Test-Choice-Page');
 });
-
-
 
 app.get('/Competition-page', (req, res) => {
   res.render('Competition-page');
