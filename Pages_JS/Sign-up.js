@@ -88,16 +88,16 @@ const signUpHandler = async (req, res) => {
 
         // Send verification email
         const transporter = nodemailer.createTransport({
-          service: 'Outlook365', // Use Outlook service
+          service: 'gmail', // Use Outlook service
           auth: {
-            user: 'mental-math45@outlook.com',
-            pass: 'mental-math-project45'
+            user: 'mentalmath12@gmail.com',
+            pass: 'fdnw zyzl gtvh azgn'
           }
         });
 
         const mailOptions = {
           to: email,
-          from: 'mental-math45@outlook.com',
+          from: 'mentalmath12@gmail.com',
           subject: 'Verify your email address',
           text: `Please click the following link to verify your email address: 
           http://${req.headers.host}/verify-email?token=${token}`

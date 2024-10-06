@@ -4,8 +4,9 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="/navBar.css">
-   <title>Super Admin Page</title>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> <!-- DataTables CSS -->
+   <title>Super Admin Page</title>
    <style>
       /* General page styles */
       body {
@@ -13,12 +14,14 @@
          background-color: #f4f4f4;
          margin: 0;
          padding: 0;
+         font-size: 100%; /* Adjusted font size */
       }
-      h1 {
+      h1, h2 {
          text-align: center;
          margin-top: 20px;
-         font-size: 32px;
+         font-size: 32px; /* You can adjust this for h2 if needed */
          color: #333;
+         padding: 20px 0; /* Add padding to h2 */
       }
       .container {
          max-width: 1200px;
@@ -35,14 +38,19 @@
          border-collapse: collapse;
          margin: 20px 0;
       }
+      table caption {
+         padding: .5em 0;
+      }
       table thead {
          background-color: #007BFF;
          color: white;
       }
       table th, table td {
-         padding: 12px 15px;
+         padding: 10px; /* Reduced padding */
          text-align: center;
          border: 1px solid #ddd;
+         white-space: nowrap; /* Prevent text wrapping */
+         font-size: 90%; /* Smaller font size */
       }
       table tbody tr:nth-child(even) {
          background-color: #f2f2f2;
@@ -66,7 +74,6 @@
       .btn:hover {
          background-color: #0056b3;
       }
-
       .btn-danger {
          background-color: #dc3545;
       }
@@ -87,18 +94,34 @@
          color: #666;
          font-size: 14px;
       }
+
+      .p {
+         text-align: center;
+         padding-top: 140px;
+         font-size: 14px;
+      }
+
+      /* Remove sorting arrows */
+      table.dataTable thead th.sorting::after,
+      table.dataTable thead th.sorting_asc::after,
+      table.dataTable thead th.sorting_desc::after {
+         display: none;
+      }
    </style>
 </head>
 <body>
     <%- include('partials/navBar') %>
    <div class="container">
       <h1>Super Admin Dashboard</h1>
-      <table>
+      <h2>Users Table</h2>
+      <table summary="User management table" class="table table-bordered table-hover dt-responsive">
+         <caption class="text-center">User management dashboard:</caption>
          <thead>
             <tr>
                <th>Username</th>
                <th>Email</th>
                <th>Role</th>
+               <th>Student Code</th> <!-- New column for Student Code -->
                <th>Actions</th>
             </tr>
          </thead>
@@ -108,12 +131,13 @@
                <td><%= user.name %></td>
                <td><%= user.email %></td>
                <td><%= user.role %></td>
+               <td><%= user.student_code %></td> <!-- Displaying Student Code -->
                <td class="actions">
                   <% if (user.role !== 'super_admin') { %>
                      <% if (user.role === 'admin') { %>
                         <a href="/demote_to_user/<%= user.ID %>" class="btn btn-danger">Demote to User</a>
                      <% } else { %>
-                        <a href="/promote_to_admin/<%= user.ID %>"class="btn">Promote to Admin</a>
+                        <a href="/promote_to_admin/<%= user.ID %>" class="btn">Promote to Admin</a>
                      <% } %>
                   <% } %>
                </td>
@@ -122,5 +146,16 @@
          </tbody>
       </table>
    </div>
+
+   <!-- jQuery and DataTables JS -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+   <script>
+      $(document).ready(function() {
+         $('table').DataTable({
+            "ordering": false // Disable ordering for all columns
+         });
+      });
+   </script>
 </body>
 </html>
