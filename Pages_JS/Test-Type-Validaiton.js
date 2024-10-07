@@ -1,9 +1,3 @@
-// Importing Related Classes:
-const DirectTest = require('./Direct_test');
-const SmallFriendsTest = require('./smallFriends_test');
-const BigFriendsTest = require('./bigFriends_test');
-const MultiplicationTest = require('./Multiplication_test');
-
 // Variables to store testType and testLVL
 let testLVL;
 let testType;

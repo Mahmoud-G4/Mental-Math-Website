@@ -372,12 +372,6 @@ function clearPara() {
 },{"./Direct_test":1,"./Multiplication_test":2,"./bigFriends_test":5,"./smallFriends_test":7}],4:[function(require,module,exports){
 "use strict";
 
-// Importing Related Classes:
-var DirectTest = require('./Direct_test');
-var SmallFriendsTest = require('./smallFriends_test');
-var BigFriendsTest = require('./bigFriends_test');
-var MultiplicationTest = require('./Multiplication_test');
-
 // Variables to store testType and testLVL
 var testLVL;
 var testType;
@@ -564,7 +558,7 @@ function checkSelections() {
   }
 }
 
-},{"./Direct_test":1,"./Multiplication_test":2,"./bigFriends_test":5,"./smallFriends_test":7}],5:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 "use strict";
 
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }

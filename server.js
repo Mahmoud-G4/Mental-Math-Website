@@ -1,23 +1,25 @@
-const express = require('express');
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const path = require('path');
-const flash = require('connect-flash');
-const signUpHandler = require('./Pages_JS/Sign-up');
-const loginHandler = require('./Pages_JS/loginHandler');
-const logoutHandler = require('./Pages_JS/Logout');
-const CompetitionHandler = require('./Pages_JS/Enter-Competition')
-const passport = require('passport');
-require('./Pages_JS/passport-config');
-const connection = require('./Pages_JS/DataBase_conn'); 
-const bcrypt = require('bcryptjs');
-const { allowedNodeEnvironmentFlags } = require('process');
-const fileUploader = require('./Pages_JS/FileUploader');
-const fileReader = require('./Pages_JS/FileReader');
-const helmet = require('helmet');
+import express from 'express';
+import session from 'express-session';
+import bodyParser from 'body-parser';
+import path from 'path';
+import flash from 'connect-flash';
+import signUpHandler from './Pages_JS/Sign-up.js';
+import loginHandler from './Pages_JS/loginHandler.js';
+import logoutHandler from './Pages_JS/Logout.js';
+import CompetitionHandler from './Pages_JS/Enter-Competition.js';
+import passport from 'passport';
+import './Pages_JS/passport-config.js';  // No export, so just import to run
+import connection from './Pages_JS/DataBase_conn.js';
+import bcrypt from 'bcryptjs';
+import { fileURLToPath } from 'url';  // To handle __dirname in ES Modules
+import fileUploader from './Pages_JS/FileUploader.js';
+import fileReader from './Pages_JS/FileReader.js';
+import helmet from 'helmet';
 const app = express();
 
-app.use(express.static('public'));
+// Handle __dirname with ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Middleware 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,7 +32,7 @@ app.use(helmet());
 app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ["'self'", "'unsafe-inline'", "*"], // Allow all sources by default
-    scriptSrc: ["'self'", "'unsafe-inline'", "*"], // Allow all scripts
+    scriptSrc: ["'self'", "'unsafe-inline'", 'https://trusted-cdn.com'],
     styleSrc: ["'self'", "'unsafe-inline'", "*"], // Allow inline styles
     imgSrc: ["*"], // Allow all images
     fontSrc: ["*"], // Allow all fonts

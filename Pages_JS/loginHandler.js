@@ -1,5 +1,6 @@
-const express = require('express');
-const passport = require('passport');
+import express from 'express';
+import passport from 'passport';
+
 const router = express.Router();
 
 // POST /login route
@@ -9,9 +10,10 @@ router.post('/login', (req, res, next) => {
       console.error('Error during authentication:', err);
       return res.status(500).send('Server error');
     }
+
     if (!user) {
       // Authentication failed, user is not found
-      return res.status(401).send(info.message || 'Invalid email or password');
+      return res.status(401).send(info?.message || 'Invalid email or password');
     }
 
     // Check if the user's email is verified
@@ -25,15 +27,15 @@ router.post('/login', (req, res, next) => {
         console.error('Error during login:', err);
         return res.status(500).send('Server error');
       }
-      // Redirect to the home page or another route
+
+      // Redirect based on user role
       if (user.role === 'admin' || user.role === 'super_admin') {
-        return res.redirect('Adminstrator-DashBoard');
-      }
-      else{
+        return res.redirect('/Adminstrator-DashBoard');
+      } else {
         return res.redirect('/home_page');
       }
     });
   })(req, res, next);
 });
 
-module.exports = router;
+export default router;

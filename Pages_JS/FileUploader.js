@@ -1,6 +1,7 @@
-const path = require('path');
-const fs = require('fs');
+import path from 'path';
+import fs from 'fs';
 
+// Function to handle file upload
 const fileUploader = function (file, acadmey, level, testType) {
     // Define directory path based on Level and Test Type
     const uploadDir = path.join(__dirname, 'Pre-Made-Tests', acadmey, level, testType);
@@ -10,13 +11,17 @@ const fileUploader = function (file, acadmey, level, testType) {
         fs.mkdirSync(uploadDir, { recursive: true });
     }
 
-    // Save file to appropriate directory
+    // Save file to the appropriate directory
     const filePath = path.join(uploadDir, file.originalname);
 
+    // Write the file to the specified path
     fs.writeFile(filePath, file.buffer, (err) => {
-        if (err) throw err;
+        if (err) {
+            console.error(`Error uploading ${file.originalname}:`, err);
+            return;
+        }
         console.log(`${file.originalname} uploaded successfully.`);
     });
 };
 
-module.exports = fileUploader;
+export default fileUploader;

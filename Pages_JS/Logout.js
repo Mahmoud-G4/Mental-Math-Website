@@ -9,4 +9,5 @@ const logoutHandler = (req, res) => {
   });
 };
 
-module.exports = logoutHandler;
+export default logoutHandler;
+

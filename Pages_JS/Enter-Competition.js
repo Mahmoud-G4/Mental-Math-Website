@@ -1,4 +1,4 @@
-const connection = require('./DataBase_conn'); // Import database connection
+import connection from './DataBase_conn.js'; // Import database connection
 
 const CompetitionHandler = async (req, res) => {
     const { username, student_code, email, phone, CompetitionToken } = req.body; // Extract data from the form submission
@@ -40,4 +40,4 @@ const CompetitionHandler = async (req, res) => {
     });
 };
 
-module.exports = CompetitionHandler;
+export default CompetitionHandler;

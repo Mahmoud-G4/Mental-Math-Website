@@ -1,13 +1,13 @@
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const db = require('./DataBase_conn'); // Import your database connection
-const bcrypt = require('bcryptjs'); // 
+import passport from 'passport';
+import { Strategy as LocalStrategy } from 'passport-local';
+import db from './DataBase_conn.js'; // Import your database connection
+import bcrypt from 'bcryptjs';
 
 // Define the Local Strategy
 passport.use(new LocalStrategy(
   {
     usernameField: 'email', // Field name for the email in your login form
-    passwordField: 'password' // Field name for the password in your login form
+    passwordField: 'password', // Field name for the password in your login form
   },
   (email, password, done) => {
     // Query to find the user with the provided email
@@ -67,4 +67,4 @@ passport.deserializeUser((ID, done) => {
   });
 });
 
-module.exports = passport;
+export default passport;
