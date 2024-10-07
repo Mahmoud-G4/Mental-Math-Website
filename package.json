@@ -24,8 +24,8 @@
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
-    "start": "node Pages_JS/server.js",
+    "start": "node server.js",
     "watch": "watchify Pages_JS/index.js -t [ babelify --presets [ @babel/preset-env ] ] -o dist/bundle.js -v",
-    "dev": "nodemon Pages_JS/server.js"
+    "dev": "nodemon server.js"
   }
 }
