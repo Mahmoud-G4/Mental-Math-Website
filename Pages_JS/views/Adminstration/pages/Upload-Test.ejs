@@ -62,7 +62,7 @@
 </li>
   
 <li class="nav-item">
-  <a class="nav-link text-white " href="/users_table">
+  <a class="nav-link text-white " href="/Users-Table">
     
       <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
         <i class="material-icons opacity-10">table_view</i>
@@ -73,7 +73,7 @@
 </li>
 
 <li class="nav-item"></li>
-  <a class="nav-link text-white " href="/admins_table">
+  <a class="nav-link text-white " href="/Admins-Table">
     
       <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
         <i class="material-icons opacity-10">table_view</i>
@@ -121,7 +121,16 @@
                   <h6>Upload a Test File</h6>
                 </div>
                 <div class="card-body">
-                  <form action="/uploadTest" method="POST" enctype="multipart/form-data" id="upload-form">
+                  <form method="POST" enctype="multipart/form-data" id="upload-form">
+                    
+                    <div class="form-group">
+                        <label for="Acadmey-Name">Select Academy </label>
+                        <select class="form-control" id="Acadmey-Name" name="Acadmey-Name" required>
+                          <option value="" disabled selected>Select a level</option>
+                          <option value="Genius-Acadmey">Genius-Acadmey</option>
+                        </select>
+                      </div>
+                    
                     <!-- Test Level Selection -->
                     <div class="form-group">
                       <label for="testLevel">Select Test Level</label>
@@ -168,12 +177,13 @@
   const fileInput = document.getElementById('file');
   const testLevelInput = document.getElementById('testLevel');
   const testTypeInput = document.getElementById('testType');
+  const academyName = document.getElementById('Acadmey-Name');
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     // Ensure file and other fields are selected
-    if (!fileInput.files.length || !testLevelInput.value || !testTypeInput.value) {
+    if (!fileInput.files.length || !academyName.value || !testLevelInput.value || !testTypeInput.value) {
       alert('Please fill all fields and select a file to upload.');
       return;
     }
@@ -181,6 +191,7 @@
     // Create a FormData object to send the form data
     const formData = new FormData();
     formData.append('file', fileInput.files[0]);
+    formData.append('acadmey', academyName.value);
     formData.append('testLevel', testLevelInput.value);
     formData.append('testType', testTypeInput.value);
 
@@ -207,7 +218,6 @@
     }
   });
 });
-
-     </script>
+</script>
 </body>
 </html>

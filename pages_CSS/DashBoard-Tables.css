@@ -1,0 +1,100 @@
+
+  /* General page styles */
+  body {
+     font-family: Arial, sans-serif;
+     background-color: #f4f4f4;
+     margin: 0;
+     padding: 0;
+     font-size: 100%; /* Adjusted font size */
+  }
+  h1, h2 {
+     text-align: center;
+     margin-top: 20px;
+     font-size: 32px; /* You can adjust this for h2 if needed */
+     color: #333;
+     padding: 20px 0; /* Add padding to h2 */
+  }
+  .container {
+     max-width: 1200px;
+     margin: 30px auto;
+     padding: 20px;
+     background-color: #fff;
+     box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+     border-radius: 8px;
+  }
+
+  /* Table styling */
+  table {
+     width: 100%;
+     border-collapse: collapse;
+     margin: 20px 0;
+  }
+  table caption {
+     padding: .5em 0;
+  }
+  table thead {
+     background-color: #007BFF;
+     color: white;
+  }
+  table th, table td {
+     padding: 10px; /* Reduced padding */
+     text-align: center;
+     border: 1px solid #ddd;
+     white-space: nowrap; /* Prevent text wrapping */
+     font-size: 90%; /* Smaller font size */
+  }
+  table tbody tr:nth-child(even) {
+     background-color: #f2f2f2;
+  }
+  table tbody tr:hover {
+     background-color: #e6f7ff;
+  }
+
+  /* Button styling */
+  .btn {
+     background-color: #007BFF;
+     color: white;
+     border: none;
+     padding: 10px 20px;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 14px;
+     transition: background-color 0.3s ease;
+     text-decoration: none;
+  }
+  .btn:hover {
+     background-color: #0056b3;
+  }
+  .btn-danger {
+     background-color: #dc3545;
+  }
+  .btn-danger:hover {
+     background-color: #c82333;
+  }
+
+  /* Additional styling */
+  .actions {
+     display: flex;
+     justify-content: center;
+     gap: 10px;
+  }
+
+  .footer {
+     text-align: center;
+     margin-top: 30px;
+     color: #666;
+     font-size: 14px;
+  }
+
+  .p {
+     text-align: center;
+     padding-top: 140px;
+     font-size: 14px;
+  }
+
+  /* Remove sorting arrows */
+  table.dataTable thead th.sorting::after,
+  table.dataTable thead th.sorting_asc::after,
+  table.dataTable thead th.sorting_desc::after {
+     display: none;
+  }

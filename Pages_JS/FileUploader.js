@@ -1,9 +1,9 @@
 const path = require('path');
 const fs = require('fs');
 
-const fileUploader = function (file, level, testType) {
+const fileUploader = function (file, acadmey, level, testType) {
     // Define directory path based on Level and Test Type
-    const uploadDir = path.join(__dirname, 'Pre-made-tests', level, testType);
+    const uploadDir = path.join(__dirname, '../Pre-Made-Tests', acadmey, level, testType);
 
     // Ensure the directory exists
     if (!fs.existsSync(uploadDir)) {

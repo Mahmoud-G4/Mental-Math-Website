@@ -12,6 +12,8 @@ require('./passport-config'); // Ensure Passport configuration is required
 const connection = require('./DataBase_conn'); // Use the correct import for the connection
 const bcrypt = require('bcrypt');
 const { allowedNodeEnvironmentFlags } = require('process');
+const fileUploader = require('./FileUploader');
+const fileReader = require('./FileReader');
 
 const app = express();
 
@@ -51,7 +53,7 @@ app.get('/promote_to_admin/:id', (req, res) => {
           console.error('Error promoting user:', err);
           return res.status(500).send('Error promoting user');
       }
-      res.redirect('/users_table'); // Redirect back to the super admin page
+      res.redirect('/Users-Table'); // Redirect back to the super admin page
   });
 });
 
@@ -65,7 +67,7 @@ app.get('/demote_to_user/:id', (req, res) => {
           console.error('Error demoting user:', err);
           return res.status(500).send('Error demoting user');
       }
-      res.redirect('/users_table'); // Redirect back to the super admin page
+      res.redirect('/Users-Table'); // Redirect back to the super admin page
   });
 });
 
@@ -112,7 +114,6 @@ function checkNotAuthenticated(req, res, next) {
 
 // Serve static files
 app.use(express.static(path.join(__dirname, '../Pages_HTML')));
-// Serve static files from the images directory
 app.use(express.static(path.join(__dirname, '../Pages_JS')));
 app.use('/images', express.static(path.join(__dirname, '../images')));
 app.use(express.static(path.join(__dirname, '../Pages_CSS')));
@@ -128,13 +129,15 @@ app.post('/signup', signUpHandler);
 app.post('/login', loginHandler);
 app.post('/logout', logoutHandler);
 app.post('/Enter-Competition', CompetitionHandler);
+app.post('/uploadTest', fileUploader);
+app.post('/readFile', fileReader);
 
 // Route to promote a user to admin
 app.get('/promote_to_admin/:id', isSuperAdmin, (req, res) => {
   const userId = req.params.id;
   connection.query('UPDATE users SET role = ? WHERE id = ?', ['admin', userId], (err, results) => {
       if (err) throw err;
-      res.redirect('/users_table');
+      res.redirect('/Users-Table');
   });
 });
 
@@ -143,22 +146,29 @@ app.get('/demote_to_user/:id', isSuperAdmin, (req, res) => {
   const userId = req.params.id;
   connection.query('UPDATE users SET role = ? WHERE id = ?', ['user', userId], (err, results) => {
       if (err) throw err;
-      res.redirect('/users_table');
+      res.redirect('/Users-Table');
   });
 });
 
 
-app.get('/users_table', isSuperAdmin, (req, res) => {
+app.get('/Users-Table', isSuperAdmin, (req, res) => {
   connection.query('SELECT * FROM users', (err, users) => {
       if (err) throw err;
-      res.render('users_table', { users });
+      res.render('Adminstration/pages/Users-Table', { users });
   });
 });
 
-app.get('/admins_table', isSuperAdmin, (req, res) => {
+app.get('/Admins-Table', isSuperAdmin, (req, res) => {
   connection.query('SELECT * FROM users', (err, users) => {
       if (err) throw err;
-      res.render('admins_table', { users });
+      res.render('Adminstration/pages/Admins-Table', { users });
+  });
+});
+
+app.get('/Competition-Participants-Table', isSuperAdmin, (req, res) => {
+  connection.query('SELECT * FROM competition_participants', (err, participants) => {
+      if (err) throw err;
+      res.render('Adminstration/pages/Competition-Participants-Table', { participants });
   });
 });
 
@@ -340,8 +350,6 @@ app.get('/profile_page', checkAuthenticated, (req, res) => {
     }
   });
 });
-
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
