@@ -1,11 +1,10 @@
-require('dotenv').config();
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST || 'localhost', // Use environment variable or default to localhost
-  user: process.env.DB_USER || 'root',      // Use environment variable or default to 'root'
-  password: process.env.DB_PASSWORD || '',   // Use environment variable or default to empty
-  database: process.env.DB_NAME || 'mental_math_db',
+  host: 'localhost',             // host, e.g., 'localhost'
+  user: 'root',                 // MySQL username
+  password: '',                // MySQL password
+  database: 'mental_math_db'  // database name
 });
 
 connection.connect((err) => {

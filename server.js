@@ -8,12 +8,13 @@ const loginHandler = require('./Pages_JS/loginHandler');
 const logoutHandler = require('./Pages_JS/Logout');
 const CompetitionHandler = require('./Pages_JS/Enter-Competition')
 const passport = require('passport');
-require('./Pages_JS/passport-config'); // Ensure Passport configuration is required
-const connection = require('./Pages_JS/DataBase_conn'); // Use the correct import for the connection
+require('./Pages_JS/passport-config');
+const connection = require('./Pages_JS/DataBase_conn'); 
 const bcrypt = require('bcryptjs');
 const { allowedNodeEnvironmentFlags } = require('process');
 const fileUploader = require('./Pages_JS/FileUploader');
 const fileReader = require('./Pages_JS/FileReader');
+const helmet = require('helmet');
 const app = express();
 
 app.use(express.static('public'));
@@ -21,6 +22,23 @@ app.use(express.static('public'));
 // Middleware 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Use Helmet for security headers
+app.use(helmet());
+
+// Configure Content Security Policy
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'", "'unsafe-inline'", "*"], // Allow all sources by default
+    scriptSrc: ["'self'", "'unsafe-inline'", "*"], // Allow all scripts
+    styleSrc: ["'self'", "'unsafe-inline'", "*"], // Allow inline styles
+    imgSrc: ["*"], // Allow all images
+    fontSrc: ["*"], // Allow all fonts
+    connectSrc: ["*"], // Allow all connections
+    frameSrc: ["*"], // Allow all frames (if needed)
+  }
+
+}));
 
 // Configure session middleware
 app.use(session({
@@ -107,7 +125,7 @@ app.get('/login_page', (req, res) => {
   res.render('Login');
 });
 
-app.get('/contact_page', (req, res) => {
+app.get('/Contact-Page', (req, res) => {
   res.render('contact');
 });
 

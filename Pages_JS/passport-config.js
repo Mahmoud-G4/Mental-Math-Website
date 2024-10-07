@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const db = require('./DataBase_conn'); // Import your database connection
-const bcrypt = require('bcryptjs'); // Ensure bcrypt is installed: npm install bcrypt
+const bcrypt = require('bcryptjs'); // 
 
 // Define the Local Strategy
 passport.use(new LocalStrategy(
