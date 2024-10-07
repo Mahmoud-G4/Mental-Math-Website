@@ -10,7 +10,7 @@ const CompetitionHandler = require('./Pages_JS/Enter-Competition')
 const passport = require('passport');
 require('./Pages_JS/passport-config'); // Ensure Passport configuration is required
 const connection = require('./Pages_JS/DataBase_conn'); // Use the correct import for the connection
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { allowedNodeEnvironmentFlags } = require('process');
 const fileUploader = require('./Pages_JS/FileUploader');
 const fileReader = require('./Pages_JS/FileReader');

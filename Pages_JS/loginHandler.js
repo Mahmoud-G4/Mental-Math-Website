@@ -26,7 +26,12 @@ router.post('/login', (req, res, next) => {
         return res.status(500).send('Server error');
       }
       // Redirect to the home page or another route
-      return res.redirect('/home_page'); // Adjust the redirect URL as needed
+      if (user.role === 'admin' || user.role === 'super_admin') {
+        return res.redirect('Adminstrator-DashBoard');
+      }
+      else{
+        return res.redirect('/home_page');
+      }
     });
   })(req, res, next);
 });
