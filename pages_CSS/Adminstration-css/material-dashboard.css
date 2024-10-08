@@ -21190,7 +21190,8 @@ fieldset:disabled .btn {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   padding: 1.5rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card.card-plain {

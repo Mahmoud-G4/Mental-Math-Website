@@ -25,7 +25,6 @@ async function isCodeUnique(code) {
     });
   });
 }
-
 // Function to generate a unique student code
 async function generateUniqueCode() {
   let code;
