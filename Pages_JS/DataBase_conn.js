@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
   host: process.env.DB_HOST || 'localhost',              // Default to 'localhost' if DB_HOST is not set
   user: process.env.DB_USER || 'root',                   // Default to 'root' if DB_USER is not set
   password: process.env.DB_PASSWORD || '',                // Default to '' if DB_PASSWORD is not set
-  database: process.env.DB_NAME || 'mental_math_db'      // Default to 'mental_math_db' if DB_NAME is not set
+  database: process.env.DB_Name || 'mental_math_db'      // Default to 'mental_math_db' if DB_NAME is not set
 });
 
 // Connect to MySQL
