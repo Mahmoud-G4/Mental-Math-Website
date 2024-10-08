@@ -12,9 +12,8 @@ import './Pages_JS/passport-config.js';  // No export, so just import to run
 import connection from './Pages_JS/DataBase_conn.js';
 import bcrypt from 'bcryptjs';
 import { fileURLToPath } from 'url';  // To handle __dirname in ES Modules
-import fileUploader from './Pages_JS/FileUploader.js';
+import fileUploader from './Pages_JS/fileUploader.js';
 import fileReader from './Pages_JS/FileReader.js';
-import helmet from 'helmet';
 const app = express();
 
 // Handle __dirname with ES Modules
@@ -25,22 +24,7 @@ const __dirname = path.dirname(__filename);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Use Helmet for security headers
-app.use(helmet());
 
-// Configure Content Security Policy
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'", "'unsafe-inline'", "*"], // Allow all sources by default
-    scriptSrc: ["'self'", "'unsafe-inline'", 'https://trusted-cdn.com'],
-    styleSrc: ["'self'", "'unsafe-inline'", "*"], // Allow inline styles
-    imgSrc: ["*"], // Allow all images
-    fontSrc: ["*"], // Allow all fonts
-    connectSrc: ["*"], // Allow all connections
-    frameSrc: ["*"], // Allow all frames (if needed)
-  }
-
-}));
 
 // Configure session middleware
 app.use(session({
@@ -60,100 +44,6 @@ app.use((req, res, next) => {
   res.locals.user = req.user || null; // This will make 'user' available in all templates
   next();
 });
-
-
-// Serve static files
-app.use(express.static(path.join(__dirname, './Pages_JS')));
-app.use('/images', express.static(path.join(__dirname, './images')));
-app.use(express.static(path.join(__dirname, './Pages_CSS')));
-app.use(express.static(path.join(__dirname, './dist')));
-app.use('/bootstrap', express.static(path.join(__dirname, './node_modules/bootstrap/dist')));
-
-// Set EJS as the templating engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, './Pages_JS/views'));
-
-// Routes for Functions
-app.post('/signup', signUpHandler);
-app.post('/login', loginHandler);
-app.post('/logout', logoutHandler);
-app.post('/Enter-Competition', CompetitionHandler);
-app.post('/uploadTest', fileUploader);
-app.post('/readFile', fileReader);
-
-//
-// Processing the Routes for the Different Files
-//
-
-app.get('/', (req, res) => {
-  res.render('Home-Page');
-});
-
-app.get('/Adminstrator-DashBoard', (req, res) => {
-  res.render('Adminstration/Adminstrator-DashBoard');
-});
-
-app.get('/Upload-Test', (req, res) => {
-  res.render('Adminstration/pages/Upload-Test');
-});
-
-app.get('/Users-Table', (req, res) => {
-  res.render('Adminstration/pages/Users-Table');
-});
-
-app.get('/Admins-Table', (req, res) => {
-  res.render('Adminstration/pages/Admins-Table');
-});
-
-app.get('/Competition-Participants-Table', (req, res) => {
-  res.render('Adminstration/pages/Competition-Participants-Table');
-});
-app.get('/Test-Page', (req, res) => {
-  res.render('Test-Page');
-});
-
-app.get('/Test-Choice-Page', (req, res) => {
-  res.render('Test-Choice-Page');
-});
-
-app.get('/Competition-page', (req, res) => {
-  res.render('Competition-page');
-});
-app.get('/signup_page', checkNotAuthenticated, (req, res) => {
-  res.render('SignUp');
-});
-
-app.get('/login_page', (req, res) => {
-  res.render('Login');
-});
-
-app.get('/Contact-Page', (req, res) => {
-  res.render('contact');
-});
-
-app.get('/forgot_password', (req, res) => {
-  res.render('reset');
-});
-
-app.get('/home_page', (req, res) => {
-  res.render('Home-Page');
-});
-
-app.get('/Generated-Tests',(req,res)=> {
-  res.render('Generated-Tests');
-})
-
-app.get('/Pre-Made-Tests',(req,res)=>{
-  res.render('Pre-Made-Tests');
-})
-
-app.get('/Competition-Entry-Page', (req, res) => {
-  res.render('Competition-Entry-Page');
-});
-
-//
-// End of the Routes
-//
 
 // Define middleware functions
 function checkAuthenticated(req, res, next) {
@@ -332,6 +222,100 @@ app.get('/profile_page', checkAuthenticated, (req, res) => {
     }
   });
 });
+
+// Serve static files
+app.use(express.static(path.join(__dirname, './Pages_JS')));
+app.use('/images', express.static(path.join(__dirname, './images')));
+app.use(express.static(path.join(__dirname, './Pages_CSS')));
+app.use(express.static(path.join(__dirname, './dist')));
+app.use('/bootstrap', express.static(path.join(__dirname, './node_modules/bootstrap/dist')));
+
+// Set EJS as the templating engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, './Pages_JS/views'));
+
+// Routes for Functions
+app.post('/signup', signUpHandler);
+app.post('/login', loginHandler);
+app.post('/logout', logoutHandler);
+app.post('/Enter-Competition', CompetitionHandler);
+app.post('/uploadTest', fileUploader);
+app.post('/readFile', fileReader);
+
+//
+// Processing the Routes for the Different Files
+//
+
+app.get('/', (req, res) => {
+  res.render('Home-Page');
+});
+
+app.get('/Adminstrator-DashBoard', (req, res) => {
+  res.render('Adminstration/Adminstrator-DashBoard');
+});
+
+app.get('/Upload-Test', (req, res) => {
+  res.render('Adminstration/pages/Upload-Test');
+});
+
+app.get('/Users-Table', (req, res) => {
+  res.render('Adminstration/pages/Users-Table');
+});
+
+app.get('/Admins-Table', (req, res) => {
+  res.render('Adminstration/pages/Admins-Table');
+});
+
+app.get('/Competition-Participants-Table', (req, res) => {
+  res.render('Adminstration/pages/Competition-Participants-Table');
+});
+app.get('/Test-Page', (req, res) => {
+  res.render('Test-Page');
+});
+
+app.get('/Test-Choice-Page', (req, res) => {
+  res.render('Test-Choice-Page');
+});
+
+app.get('/Competition-page', (req, res) => {
+  res.render('Competition-page');
+});
+app.get('/signup_page', checkNotAuthenticated, (req, res) => {
+  res.render('SignUp');
+});
+
+app.get('/login_page', (req, res) => {
+  res.render('Login');
+});
+
+app.get('/Contact-Page', (req, res) => {
+  res.render('contact');
+});
+
+app.get('/forgot_password', (req, res) => {
+  res.render('reset');
+});
+
+app.get('/home_page', (req, res) => {
+  res.render('Home-Page');
+});
+
+app.get('/Generated-Tests',(req,res)=> {
+  res.render('Generated-Tests');
+})
+
+app.get('/Pre-Made-Tests',(req,res)=>{
+  res.render('Pre-Made-Tests');
+})
+
+app.get('/Competition-Entry-Page', (req, res) => {
+  res.render('Competition-Entry-Page');
+});
+
+//
+// End of the Routes
+//
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
