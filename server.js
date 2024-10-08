@@ -14,6 +14,7 @@ import bcrypt from 'bcryptjs';
 import { fileURLToPath } from 'url';  // To handle __dirname in ES Modules
 import fileUploader from './Pages_JS/fileUploader.js';
 import fileReader from './Pages_JS/FileReader.js';
+import CompetitionToken from './Pages_JS/competition_token.js'
 const app = express();
 
 // Handle __dirname with ES Modules
@@ -241,6 +242,9 @@ app.post('/logout', logoutHandler);
 app.post('/Enter-Competition', CompetitionHandler);
 app.post('/uploadTest', fileUploader);
 app.post('/readFile', fileReader);
+app.post('/c_token/:id', CompetitionToken);
+
+
 
 //
 // Processing the Routes for the Different Files

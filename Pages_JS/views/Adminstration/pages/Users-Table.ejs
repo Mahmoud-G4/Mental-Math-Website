@@ -115,33 +115,45 @@
           <table  class="table table-bordered table-hover dt-responsive">
              <caption class="text-center">User management dashboard:</caption>
              <thead>
-                <tr>
-                   <th>Username</th>
-                   <th>Email</th>
-                   <th>Role</th>
-                   <th>Student Code</th> <!-- New column for Student Code -->
-                   <th>Actions</th>
-                </tr>
-             </thead>
-             <tbody>
-                <% users.forEach(user => { %>
-                <tr>
-                   <td><%= user.name %></td>
-                   <td><%= user.email %></td>
-                   <td><%= user.role %></td>
-                   <td><%= user.student_code %></td> <!-- Displaying Student Code -->
-                   <td class="actions">
-                      <% if (user.role !== 'super_admin') { %>
-                         <% if (user.role === 'admin') { %>
-                            <a href="/demote_to_user/<%= user.ID %>" class="btn btn-danger">Demote to User</a>
-                         <% } else { %>
-                            <a href="/promote_to_admin/<%= user.ID %>" class="btn">Promote to Admin</a>
-                         <% } %>
-                      <% } %>
-                   </td>
-                </tr>
-                <% }); %>
-             </tbody>
+              <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Student Code</th>
+                <th>Competition Token</th> <!-- New column -->
+                <th>Actions</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <% users.forEach(user => { %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.role %></td>
+                <td><%= user.student_code %></td>
+                <td>
+                  <% if (user.competition_token) { %> <!-- Display token if exists -->
+                    <%= user.competition_token %>
+                  <% } else { %> <!-- Show button if no token -->
+                    <form action="/c_token/<%= user.ID %>" method="POST">
+                      <button type="submit" class="btn btn-primary">Generate Token</button>
+                    </form>                    
+                  <% } %>
+                </td>
+                <td class="actions">
+                  <% if (user.role !== 'super_admin') { %>
+                    <% if (user.role === 'admin') { %>
+                      <a href="/demote_to_user/<%= user.ID %>" class="btn btn-danger">Demote to User</a>
+                    <% } else { %>
+                      <a href="/promote_to_admin/<%= user.ID %>" class="btn">Promote to Admin</a>
+                    <% } %>
+                  <% } %>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+            
           </table>
        </div>
   </main>

@@ -2,6 +2,9 @@ import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
 import db from './DataBase_conn.js'; // Import the database connection
+import dotenv from 'dotenv';
+
+dotenv.config(); // Load environment variables
 
 // Function to generate a random 7-digit student code
 function generateStudentCode() {
@@ -25,6 +28,7 @@ async function isCodeUnique(code) {
     });
   });
 }
+
 // Function to generate a unique student code
 async function generateUniqueCode() {
   let code;
@@ -79,7 +83,7 @@ const signUpHandler = async (req, res) => {
 
     // Send verification email
     const transporter = nodemailer.createTransport({
-      service: 'gmail', // Use a secure email service
+      service: 'gmail', // Use Gmail service
       auth: {
         user: process.env.EMAIL_USER, // Environment variable for email
         pass: process.env.EMAIL_PASS, // Environment variable for email password
@@ -97,7 +101,7 @@ const signUpHandler = async (req, res) => {
     transporter.sendMail(mailOptions, (err) => {
       if (err) {
         console.error('Error sending verification email:', err);
-        return res.status(500).send('Server error, couldn’t send verification e-mail');
+        return res.status(500).send('Server error, couldn’t send verification email.');
       }
       // Redirect to the login page or a page indicating that verification email has been sent
       res.redirect('/login_page');
